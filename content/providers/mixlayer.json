@@ -1,0 +1,31 @@
+{
+  "id": "mixlayer",
+  "displayName": "Mixlayer",
+  "operator": "Mixlayer",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A free hub serving open-weight models with tight limits.",
+  "verdict": "limited",
+  "verdictReason": "Small allowance, unverified operator.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://models.mixlayer.ai/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://mixlayer.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "20 RPM",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "qwen/qwen3.5-4b-free",
+      "context": "131K",
+      "bestFor": "General",
+      "latencySeconds": 1
+    }
+  ]
+}
