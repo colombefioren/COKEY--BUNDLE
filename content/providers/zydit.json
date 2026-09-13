@@ -1,0 +1,67 @@
+{
+  "id": "zydit",
+  "displayName": "Zydit AI",
+  "operator": "Zydit",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A free hub advertising unlimited requests behind a low per-minute cap.",
+  "verdict": "limited",
+  "verdictReason": "Unlimited in name, rate-shaped in practice.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.zydit.in/v3",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://zydit.in/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "Unlimited requests · 10 RPM",
+    "quotaSource": "unknown"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "big-pickle",
+      "context": "200K",
+      "bestFor": "General",
+      "latencySeconds": 14.62
+    },
+    {
+      "id": "deepseek-r1:latest",
+      "context": "128K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 7.73
+    },
+    {
+      "id": "gemma-4-31b",
+      "context": "32K",
+      "bestFor": "General",
+      "latencySeconds": 4.18
+    },
+    {
+      "id": "mimo-v2.5",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 5.59
+    },
+    {
+      "id": "muse-spark-1.2",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 7.24
+    },
+    {
+      "id": "nemotron-3-ultra-max",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 4.24
+    },
+    {
+      "id": "nemotron-3.5-lightning-max",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 5.5
+    }
+  ]
+}
