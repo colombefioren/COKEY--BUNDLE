@@ -1,0 +1,113 @@
+{
+  "id": "cloudflare",
+  "displayName": "Cloudflare Workers AI",
+  "operator": "Cloudflare, Inc.",
+  "origin": "United States",
+  "kind": "inference-cloud",
+  "summary": "Workers AI runs open models on Cloudflare's edge network, so requests terminate close to you. The free allowance is the largest per-day ceiling here.",
+  "verdict": "recommended",
+  "verdictReason": "Enormous request ceiling and near-zero network latency; the AI Gateway adds observability.",
+  "sourceUrl": "https://developers.cloudflare.com/workers-ai/",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1",
+  "apiStyle": "cloudflare",
+  "authScheme": "bearer",
+  "signupUrl": "https://dash.cloudflare.com/profile/api-tokens",
+  "docsUrl": "https://developers.cloudflare.com/workers-ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "10,000 RPD shared across all models",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret",
+    "accountId"
+  ],
+  "notes": "Requires both an API token and the Cloudflare account id.",
+  "models": [
+    {
+      "id": "@cf/openai/gpt-oss-120b",
+      "context": "128K",
+      "bestFor": "Code",
+      "latencySeconds": 0.7
+    },
+    {
+      "id": "@cf/openai/gpt-oss-20b",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 0.6
+    },
+    {
+      "id": "@cf/qwen/qwen3.8-27b",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 0.7
+    },
+    {
+      "id": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "context": "32K",
+      "bestFor": "General",
+      "latencySeconds": 0.9
+    },
+    {
+      "id": "@cf/qwen/qwen2.5-coder-32b-instruct",
+      "context": "32K",
+      "bestFor": "Code",
+      "latencySeconds": 0.7
+    },
+    {
+      "id": "@cf/qwen/qwq-32b",
+      "context": "24K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 0.8
+    },
+    {
+      "id": "@cf/meta/llama-4-scout-17b-16e-instruct",
+      "context": "131K",
+      "bestFor": "General",
+      "latencySeconds": 0.6
+    },
+    {
+      "id": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "context": "24K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 0.9
+    },
+    {
+      "id": "@cf/meta/llama-3.2-11b-vision-instruct",
+      "context": "128K",
+      "bestFor": "Vision",
+      "latencySeconds": 0.9
+    },
+    {
+      "id": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 0.8
+    },
+    {
+      "id": "@cf/google/gemma-4-26b-a4b-it",
+      "context": "256K",
+      "bestFor": "General",
+      "latencySeconds": 0.5
+    },
+    {
+      "id": "@cf/zai-org/glm-4.7-flash",
+      "context": "131K",
+      "bestFor": "Agent",
+      "latencySeconds": 0.5
+    },
+    {
+      "id": "@cf/nvidia/nemotron-3-120b-a12b",
+      "context": "256K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 0.7
+    },
+    {
+      "id": "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+      "context": "80K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 0.7
+    }
+  ]
+}
