@@ -82,6 +82,7 @@ async function main(): Promise<void> {
 
   const dossiersModule = await fromSource<{
     providerDossiers: () => Record<string, Dossier>;
+    providerDossier: (id: string) => Dossier;
   }>(args.source, "src/catalog/dossiers.ts");
 
   const modelsModule = await fromSource<{
@@ -111,12 +112,14 @@ async function main(): Promise<void> {
   let skipped = 0;
 
   for (const entry of [...catalog].sort((a, b) => a.id.localeCompare(b.id))) {
-    const dossier = dossiers[entry.id];
-    if (!dossier) {
-      console.warn(`! ${entry.id}: no dossier, skipping (it would be unopinionated content)`);
-      skipped += 1;
-      continue;
-    }
+    /*
+     * A provider with no explicit dossier is imported anyway, carrying COKEY's
+     * neutral "nobody has verified who runs this" dossier. Omitting it would
+     * make this repository a partial catalog, and a partial catalog is worse
+     * than one that says plainly which entries still need an editor.
+     */
+    const dossier = dossiers[entry.id] ?? dossiersModule.providerDossier(entry.id);
+    const unreviewed = !dossiers[entry.id];
 
     const target = join(providersDir, `${entry.id}.json`);
     if (existsSync(target) && !args.force) {
@@ -143,6 +146,9 @@ async function main(): Promise<void> {
       freeTier: entry.freeTier,
       credentialFields: entry.credentialFields,
       ...(entry.notes ? { notes: entry.notes } : {}),
+      ...(unreviewed
+        ? { notes: "Imported from the legacy catalog without a dossier. Needs an editor." }
+        : {}),
       models: modelsModule.modelsForProvider(entry.id),
     };
 
