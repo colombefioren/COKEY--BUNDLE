@@ -1,0 +1,36 @@
+{
+  "id": "bazaarlink",
+  "displayName": "BazaarLink",
+  "operator": "BazaarLink",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A free hub advertising a very small request-per-day allowance.",
+  "verdict": "limited",
+  "verdictReason": "50 requests per day is a demo, not a pool.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.bazaarlink.ai/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://bazaarlink.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "10 RPM · 50 RPD",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "auto:free",
+      "bestFor": "General",
+      "latencySeconds": 2.56
+    },
+    {
+      "id": "qwen/qwen3.7-flash:free",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 3.23
+    }
+  ]
+}
