@@ -1,0 +1,34 @@
+{
+  "id": "fhrouter",
+  "displayName": "FH Router",
+  "operator": "Not publicly disclosed",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "No dossier yet for this provider. Add one in the catalog when you learn who runs it.",
+  "verdict": "limited",
+  "verdictReason": "An undocumented operator cannot be recommended or ruled out.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://fhrouter.com/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://fhrouter.com/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "Free 'on the house' models",
+    "quotaSource": "unknown"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "notes": "Imported from the legacy catalog without a dossier. Needs an editor.",
+  "models": [
+    {
+      "id": "deepseek-v4-flash",
+      "bestFor": "General"
+    },
+    {
+      "id": "grok-4.6",
+      "bestFor": "Reasoning"
+    }
+  ]
+}
