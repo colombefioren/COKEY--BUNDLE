@@ -1,0 +1,67 @@
+{
+  "id": "naga",
+  "displayName": "Naga AI",
+  "operator": "Naga AI",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A free hub whose catalogue mirrors the OpenRouter free pool.",
+  "verdict": "limited",
+  "verdictReason": "Re-export tier: no independent capacity behind it.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.naga.ac/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://naga.ac/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "10 RPM · 100 RPD",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "dots-3-note-preview:free",
+      "context": "512K",
+      "bestFor": "General",
+      "latencySeconds": 1.6
+    },
+    {
+      "id": "lfm-2.5-2.6b:free",
+      "context": "65K",
+      "bestFor": "General",
+      "latencySeconds": 1.6
+    },
+    {
+      "id": "ling-3.0-flash-fin:free",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 1.5
+    },
+    {
+      "id": "ling-3.0-flash-sante:free",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 1.5
+    },
+    {
+      "id": "nemotron-3-super-120b-a12b:free",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 3.2
+    },
+    {
+      "id": "nemotron-3.5-lightning:free",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 1.6
+    },
+    {
+      "id": "sonar:free",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 2.5
+    }
+  ]
+}
