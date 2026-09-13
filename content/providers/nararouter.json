@@ -1,0 +1,31 @@
+{
+  "id": "nararouter",
+  "displayName": "NaraRouter",
+  "operator": "Not publicly disclosed",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "No dossier yet for this provider. Add one in the catalog when you learn who runs it.",
+  "verdict": "limited",
+  "verdictReason": "An undocumented operator cannot be recommended or ruled out.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://router.bynara.id/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://bynara.id/settings",
+  "freeTier": {
+    "advertised": true,
+    "summary": "Free laguna-s-2.1 · DeepSeek models paid",
+    "quotaSource": "unknown"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "notes": "Imported from the legacy catalog without a dossier. Needs an editor.",
+  "models": [
+    {
+      "id": "laguna-s-2.1",
+      "context": "262K",
+      "bestFor": "Code"
+    }
+  ]
+}
