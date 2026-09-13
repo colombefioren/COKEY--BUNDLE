@@ -1,0 +1,37 @@
+{
+  "id": "anyapi",
+  "displayName": "AnyAPI AI",
+  "operator": "AnyAPI AI",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A free hub whose model list closely mirrors OpenRouter's free pool rather than a distinct backend.",
+  "verdict": "limited",
+  "verdictReason": "Structurally a re-export, so it fails when OpenRouter's pool is congested.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.anyapi.ai/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://anyapi.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "100,000 TPD",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "dots-studio/dots-3-note-preview:free",
+      "context": "32K",
+      "bestFor": "General",
+      "latencySeconds": 1.6
+    },
+    {
+      "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+      "context": "128K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 8.8
+    }
+  ]
+}
