@@ -1,0 +1,35 @@
+{
+  "id": "pollinations",
+  "displayName": "Pollinations",
+  "operator": "Not publicly disclosed",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "No dossier yet for this provider. Add one in the catalog when you learn who runs it.",
+  "verdict": "limited",
+  "verdictReason": "An undocumented operator cannot be recommended or ruled out.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://gen.pollinations.ai/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://pollinations.ai/",
+  "docsUrl": "https://docs.pollinations.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "Free community-hosted models",
+    "quotaSource": "unknown"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "notes": "Imported from the legacy catalog without a dossier. Needs an editor.",
+  "models": [
+    {
+      "id": "community/Catniti/deepseek-r1-free",
+      "bestFor": "Reasoning"
+    },
+    {
+      "id": "community/AkshayCoder48/poolside-laguna-s-2.1:free",
+      "bestFor": "Code"
+    }
+  ]
+}
