@@ -98,14 +98,21 @@ export function validateContent(raw: RawContent, options: ValidateOptions = {}):
 
     // The file name is the id. A mismatch means a reader looking for groq.json
     // found something else, which is worse than a wrong id.
-    const expected = entry.path.split("/").pop()!.replace(/\.json$/, "");
+    const expected = entry.path
+      .split("/")
+      .pop()!
+      .replace(/\.json$/, "");
     if (provider.id !== expected) {
       error(entry.path, `id "${provider.id}" does not match file name "${expected}.json"`, "id");
     }
 
     const previous = seenProviderIds.get(provider.id);
     if (previous) {
-      error(entry.path, `duplicate provider id "${provider.id}", already defined in ${previous}`, "id");
+      error(
+        entry.path,
+        `duplicate provider id "${provider.id}", already defined in ${previous}`,
+        "id",
+      );
       continue;
     }
     seenProviderIds.set(provider.id, entry.path);
@@ -123,11 +130,7 @@ export function validateContent(raw: RawContent, options: ValidateOptions = {}):
     }
 
     if (provider.verdict === "recommended" && !provider.sourceUrl) {
-      warn(
-        entry.path,
-        "verdict is \"recommended\" with no sourceUrl to back the claim",
-        "sourceUrl",
-      );
+      warn(entry.path, 'verdict is "recommended" with no sourceUrl to back the claim', "sourceUrl");
     }
 
     if (provider.freeTier.advertised && provider.freeTier.quotaSource === "unknown") {
@@ -140,7 +143,11 @@ export function validateContent(raw: RawContent, options: ValidateOptions = {}):
 
     const age = daysSince(provider.reviewedAt, now);
     if (age !== undefined && age > staleAfterDays) {
-      warn(entry.path, `review is ${age} days old — free tiers change faster than that`, "reviewedAt");
+      warn(
+        entry.path,
+        `review is ${age} days old — free tiers change faster than that`,
+        "reviewedAt",
+      );
     }
 
     providers.push(provider);
@@ -252,7 +259,11 @@ export function validateContent(raw: RawContent, options: ValidateOptions = {}):
        */
       const looksLikeId = /^[a-z0-9-]+$/.test(entry.provider);
       if (!provider && looksLikeId) {
-        warn(rankings.sources["drop-list"]!, `"${entry.provider}" is not in the catalog`, "provider");
+        warn(
+          rankings.sources["drop-list"]!,
+          `"${entry.provider}" is not in the catalog`,
+          "provider",
+        );
       }
     }
   }
@@ -313,9 +324,15 @@ function parseRankings(raw: RawContent, error: IssueFn, warn: IssueFn): Rankings
     return undefined;
   }
 
+  /*
+   * `ZodType<T, Def, unknown>` and not `ZodType<T>`: the third parameter is the
+   * schema's *input* type, and a field with a `.default()` is optional on the
+   * way in and present on the way out. Without it, `T` is inferred from the
+   * input and every defaulted field comes back as `| undefined`.
+   */
   const parse = <T>(
     key: string,
-    schema: z.ZodType<T>,
+    schema: z.ZodType<T, z.ZodTypeDef, unknown>,
     required = false,
   ): { value: T[]; path: string } | undefined => {
     const file = files[key];
