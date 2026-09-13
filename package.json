@@ -1,0 +1,40 @@
+{
+  "name": "cokey-cms",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The COKEY content repository: provider dossiers, free-tier notes, terms of service and ranking boards",
+  "keywords": ["cokey", "content", "catalog", "providers", "llm"],
+  "type": "module",
+  "license": "MIT",
+  "author": "COKEY contributors",
+  "homepage": "https://github.com/colombefioren/cokey-cms#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colombefioren/cokey-cms.git"
+  },
+  "engines": {
+    "node": ">=20.10"
+  },
+  "scripts": {
+    "build": "tsx src/cli.ts build",
+    "validate": "tsx src/cli.ts validate",
+    "list": "tsx src/cli.ts list",
+    "show": "tsx src/cli.ts show",
+    "stats": "tsx src/cli.ts stats",
+    "serve": "tsx src/cli.ts serve",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\""
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "prettier": "^3.3.3",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.4"
+  }
+}
