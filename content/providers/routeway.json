@@ -1,0 +1,37 @@
+{
+  "id": "routeway",
+  "displayName": "Routeway AI",
+  "operator": "Routeway AI",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A router with two models, one of which answers with double-digit latency.",
+  "verdict": "avoid",
+  "verdictReason": "The same model is faster and freer on Groq or Cloudflare.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.routeway.ai/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://routeway.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "5 RPM",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "muse-glimmer-30b:free",
+      "context": "131K",
+      "bestFor": "General",
+      "latencySeconds": 4.05
+    },
+    {
+      "id": "gpt-oss-120b:free",
+      "context": "131K",
+      "bestFor": "General",
+      "latencySeconds": 11.04
+    }
+  ]
+}
