@@ -1,0 +1,25 @@
+{
+  "id": "gonka",
+  "displayName": "Gonka Broker",
+  "operator": "Gonka Broker",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A small broker reachable only after phone verification.",
+  "verdict": "avoid",
+  "verdictReason": "Phone verification for three models that are all available elsewhere.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://proxy.gonkabroker.com/v1/",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://gonkabroker.com/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "6 RPM",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "notes": "Requires phone verification before free monthly tokens unlock.",
+  "models": []
+}
