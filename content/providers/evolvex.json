@@ -1,0 +1,73 @@
+{
+  "id": "evolvex",
+  "displayName": "EvolveX",
+  "operator": "EvolveX",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A free hub that does not publish its quotas.",
+  "verdict": "limited",
+  "verdictReason": "Unspecified limits and no operator disclosure.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.evolvex.gg/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://evolvex.gg/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "5 RPM · unspecified RPD",
+    "quotaSource": "unknown"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "google/diffusiongemma-26b-a4b-it",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 2.56
+    },
+    {
+      "id": "meta/llama-3.2-11b-vision-instruct",
+      "context": "128K",
+      "bestFor": "Vision",
+      "latencySeconds": 1.06
+    },
+    {
+      "id": "meta/muse-glimmer-30b",
+      "context": "131K",
+      "bestFor": "General",
+      "latencySeconds": 5.36
+    },
+    {
+      "id": "minimaxai/minimax-m3",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 1.95
+    },
+    {
+      "id": "moonshotai/kimi-k3",
+      "context": "128K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 3.15
+    },
+    {
+      "id": "nvidia/nemotron-3-super-120b-a12b",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 2.21
+    },
+    {
+      "id": "openai/gpt-oss-20b",
+      "context": "131K",
+      "bestFor": "Code",
+      "latencySeconds": 2.3
+    },
+    {
+      "id": "poolside/laguna-xs-2.1",
+      "context": "128K",
+      "bestFor": "Code",
+      "latencySeconds": 5.23
+    }
+  ]
+}
