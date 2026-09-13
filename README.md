@@ -62,27 +62,33 @@ change without scrolling past forty other services.
   "apiStyle": "openai",
   "authScheme": "bearer",
   "signupUrl": "https://console.groq.com/keys",
-  "freeTier": { "advertised": true, "summary": "Free tier with daily limits", "quotaSource": "provider" },
-  "models": [{ "id": "qwen/qwen3.8-27b", "context": "262K", "bestFor": "Code", "latencySeconds": 0.3 }]
+  "freeTier": {
+    "advertised": true,
+    "summary": "Free tier with daily limits",
+    "quotaSource": "provider"
+  },
+  "models": [
+    { "id": "qwen/qwen3.8-27b", "context": "262K", "bestFor": "Code", "latencySeconds": 0.3 }
+  ]
 }
 ```
 
 `kind` and `verdict` are closed sets, enforced by the schema:
 
-| `kind` | meaning |
-| :-- | :-- |
-| `lab` | the organisation that trains the models |
+| `kind`            | meaning                                        |
+| :---------------- | :--------------------------------------------- |
+| `lab`             | the organisation that trains the models        |
 | `inference-cloud` | runs other people's models on its own hardware |
-| `aggregator` | routes to many upstreams behind one key |
-| `gateway` | a curated resale of a pool |
-| `local` | runs on the user's own machine |
+| `aggregator`      | routes to many upstreams behind one key        |
+| `gateway`         | a curated resale of a pool                     |
+| `local`           | runs on the user's own machine                 |
 
-| `verdict` | meaning |
-| :-- | :-- |
-| `recommended` | fine to depend on |
-| `usable` | works, with caveats |
-| `limited` | works, but will not carry a workload |
-| `avoid` | should not be built on |
+| `verdict`     | meaning                              |
+| :------------ | :----------------------------------- |
+| `recommended` | fine to depend on                    |
+| `usable`      | works, with caveats                  |
+| `limited`     | works, but will not carry a workload |
+| `avoid`       | should not be built on               |
 
 A `verdict` is an opinion, and `verdictReason` is the argument for it. Both are
 required: a verdict nobody can argue with is not useful to a reader.
@@ -121,6 +127,14 @@ a ranking with no provenance is a rumour:
 
 `meta.json` carries the sources, the disclaimer and the bottom line that frames
 every board.
+
+---
+
+`npm run stats` and `npm run validate` are the editorial tools: the first lists
+the files whose review has gone stale and the ones advertising a free tier
+without a source, the second names the file and field of every problem. Warnings
+are the work queue, not noise — twenty of them mean twenty claims nobody has
+checked against the operator's own page yet.
 
 ---
 
@@ -176,16 +190,46 @@ GET /health
 
 ## Consuming this from COKEY
 
-COKEY ships a vendored snapshot of a build, so it works offline and with no
-network access, and treats this repository as the source of truth:
+COKEY reads the `content/` directory directly, at runtime, and **watches it**. The
+practical effect is the one worth having: edit `content/providers/groq.json`,
+save, and the open dashboard shows the new verdict — no rebuild, no restart, no
+fetch from anywhere.
+
+It looks for a checkout in three places, in order:
+
+1. `COKEY_CMS_DIR`, if set;
+2. `./cms/content`, relative to the COKEY working directory;
+3. `../cokey-cms/content`, a checkout cloned beside it.
 
 ```bash
 # in the COKEY repository
-npm run cms:pull     # fetch a build and write it into src/catalog/generated/
+COKEY_CMS_DIR=../cokey-cms/content npm start
 ```
 
-The vendored copy is what makes COKEY local-first: a gateway that phones home to
-a CMS on boot would break the one promise the project makes about the network.
+There is no network call and no phone-home: a gateway that fetched its own
+catalog from a server on boot would break the one promise this project makes
+about the network. If no checkout is present, COKEY serves the catalog compiled
+into the build, so a fresh clone is useful with zero setup.
+
+The overlay is **field by field**, not file by file. Content wins where it
+speaks and COKEY's compiled catalog fills every gap, so a dossier that only
+states a verdict still gets its operator, summary and source URL from the build.
+A half-written file improves the dashboard rather than breaking it.
+
+What COKEY exposes from here:
+
+| Endpoint                         | Serves                                                                       |
+| :------------------------------- | :--------------------------------------------------------------------------- |
+| `GET /api/content/status`        | the directory being watched, its counts, and every file that failed to parse |
+| `GET /api/content/terms`         | the terms document, in `order`                                               |
+| `POST /api/content/reload`       | a forced re-read, for mounts a watcher cannot see                            |
+| `GET /api/content/providers/:id` | one dossier, tagged with `source: "cms"` or `"compiled"`                     |
+| `GET /api/catalog/providers`     | the catalog with the curated dossiers merged in                              |
+| `GET /api/catalog/rankings`      | the curated boards, with their sources and disclaimer                        |
+
+A reload that changes nothing observable is reported as _nothing changed_
+rather than announced as a success, because a dashboard that claims to have
+reloaded when it did not is worse than one that says nothing.
 
 ---
 
