@@ -1,0 +1,43 @@
+{
+  "id": "fastrouter",
+  "displayName": "FastRouter",
+  "operator": "FastRouter",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A router with a per-model daily request allowance on its free tier.",
+  "verdict": "limited",
+  "verdictReason": "Ten requests per model per day is too thin to build on.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.fastrouter.ai/api/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://fastrouter.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "10 RPD per model",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "openai/gpt-oss-120b:free",
+      "context": "131K",
+      "bestFor": "General",
+      "latencySeconds": 2.8
+    },
+    {
+      "id": "openai/gpt-oss-20b:free",
+      "context": "131K",
+      "bestFor": "Code",
+      "latencySeconds": 2.8
+    },
+    {
+      "id": "sarvam/sarvam-105b:free",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 2.79
+    }
+  ]
+}
