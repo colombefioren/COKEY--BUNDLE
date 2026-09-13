@@ -60,11 +60,13 @@ const BUNDLES = [
 ] as const;
 
 /** Validate and emit. Never writes a partial build. */
-export async function build(options: {
-  root?: string;
-  outDir?: string;
-  now?: Date;
-} = {}): Promise<BuildResult> {
+export async function build(
+  options: {
+    root?: string;
+    outDir?: string;
+    now?: Date;
+  } = {},
+): Promise<BuildResult> {
   const root = options.root ?? defaultRoot();
   const outDir = options.outDir ?? join(root, "dist");
 

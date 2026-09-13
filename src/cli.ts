@@ -88,8 +88,7 @@ export function parseArgs(argv: string[]): ParsedArgs {
  * Output helpers
  * -------------------------------------------------------------------------- */
 
-const useColor = (): boolean =>
-  process.stdout.isTTY === true && process.env.NO_COLOR === undefined;
+const useColor = (): boolean => process.stdout.isTTY === true && process.env.NO_COLOR === undefined;
 
 function paint(text: string, code: string): string {
   return useColor() ? `\u001b[${code}m${text}\u001b[0m` : text;
@@ -252,9 +251,13 @@ function printProvider(provider: Provider): void {
   console.log(`${pad("Kind", 12)} ${provider.kind}`);
   console.log(`${pad("Verdict", 12)} ${provider.verdict}`);
   console.log(`${pad("Why", 12)} ${provider.verdictReason}`);
-  console.log(`${pad("Free tier", 12)} ${provider.freeTier.summary} (${provider.freeTier.quotaSource})`);
+  console.log(
+    `${pad("Free tier", 12)} ${provider.freeTier.summary} (${provider.freeTier.quotaSource})`,
+  );
   console.log(`${pad("Reviewed", 12)} ${provider.reviewedAt}`);
-  console.log(`${pad("Endpoint", 12)} ${provider.baseUrl} · ${provider.apiStyle} · ${provider.authScheme}`);
+  console.log(
+    `${pad("Endpoint", 12)} ${provider.baseUrl} · ${provider.apiStyle} · ${provider.authScheme}`,
+  );
   if (provider.signupUrl) console.log(`${pad("Signup", 12)} ${provider.signupUrl}`);
   if (provider.sourceUrl) console.log(`${pad("Source", 12)} ${provider.sourceUrl}`);
   if (provider.notes) console.log(`${pad("Notes", 12)} ${provider.notes}`);
@@ -337,7 +340,9 @@ async function commandStats(args: ParsedArgs): Promise<number> {
   }
 
   const freeProviders = providers.filter((provider) => provider.freeTier.advertised);
-  const undocumented = freeProviders.filter((provider) => provider.freeTier.quotaSource === "unknown");
+  const undocumented = freeProviders.filter(
+    (provider) => provider.freeTier.quotaSource === "unknown",
+  );
   if (undocumented.length > 0) {
     console.log(`\n${bold("Advertised free but quota unsourced")}`);
     for (const provider of undocumented) {

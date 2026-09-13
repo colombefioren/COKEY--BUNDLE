@@ -79,7 +79,10 @@ export async function loadContent(root = defaultRoot()): Promise<RawContent> {
   };
 }
 
-async function readJsonDirectory(directory: string, root: string): Promise<Array<RawFile<unknown>>> {
+async function readJsonDirectory(
+  directory: string,
+  root: string,
+): Promise<Array<RawFile<unknown>>> {
   if (!existsSync(directory)) return [];
   const names = await jsonFiles(directory);
   const out: Array<RawFile<unknown>> = [];
@@ -172,7 +175,10 @@ export function parseFrontMatter(text: string): FrontMatter {
   }
 
   const header = normalised.slice(4, end);
-  const body = normalised.slice(end + 4).replace(/^\n+/, "").trimEnd();
+  const body = normalised
+    .slice(end + 4)
+    .replace(/^\n+/, "")
+    .trimEnd();
 
   const attributes: Record<string, string> = {};
   for (const line of header.split("\n")) {
