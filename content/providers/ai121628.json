@@ -1,0 +1,31 @@
+{
+  "id": "ai121628",
+  "displayName": "AI 121628 Free",
+  "operator": "Not publicly disclosed",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "No dossier yet for this provider. Add one in the catalog when you learn who runs it.",
+  "verdict": "limited",
+  "verdictReason": "An undocumented operator cannot be recommended or ruled out.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://ai.121628.xyz/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://ai.121628.xyz/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "Free models · no published rate limit",
+    "quotaSource": "unknown"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "notes": "Imported from the legacy catalog without a dossier. Needs an editor.",
+  "models": [
+    {
+      "id": "deepseek-v4-flash-free",
+      "context": "1M",
+      "bestFor": "Reasoning"
+    }
+  ]
+}
