@@ -1,0 +1,62 @@
+{
+  "id": "cohere",
+  "displayName": "Cohere AI",
+  "operator": "Cohere Inc.",
+  "origin": "Canada",
+  "kind": "lab",
+  "summary": "Enterprise-focused lab with a strong retrieval and tool-calling line. The free trial keys are metered and expire.",
+  "verdict": "usable",
+  "verdictReason": "Solid tool calling, but trial keys are time-boxed rather than self-replenishing.",
+  "sourceUrl": "https://cohere.com/",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.cohere.com/v2",
+  "apiStyle": "cohere",
+  "authScheme": "bearer",
+  "signupUrl": "https://dashboard.cohere.com/api-keys",
+  "freeTier": {
+    "advertised": true,
+    "summary": "20 RPM · 1,000 calls/month",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "command-a-03-2025",
+      "context": "256K",
+      "bestFor": "Agent",
+      "latencySeconds": 0.55
+    },
+    {
+      "id": "command-r-08-2024",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 0.51
+    },
+    {
+      "id": "command-r-plus-08-2024",
+      "context": "128K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 0.54
+    },
+    {
+      "id": "command-r7b-12-2024",
+      "context": "128K",
+      "bestFor": "Code",
+      "latencySeconds": 0.5
+    },
+    {
+      "id": "command-a-reasoning-08-2025",
+      "context": "256K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 0.66
+    },
+    {
+      "id": "c4ai-aya-expanse-32b",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 0.82
+    }
+  ]
+}
