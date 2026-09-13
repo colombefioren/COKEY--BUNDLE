@@ -1,0 +1,46 @@
+{
+  "id": "qzz",
+  "displayName": "QZZ API",
+  "operator": "Not publicly disclosed",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "No dossier yet for this provider. Add one in the catalog when you learn who runs it.",
+  "verdict": "limited",
+  "verdictReason": "An undocumented operator cannot be recommended or ruled out.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://0api.qzz.io/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://qzz.io/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "Free DeepSeek models · ~1 request per 5 minutes",
+    "quotaSource": "unknown"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "notes": "Imported from the legacy catalog without a dossier. Needs an editor.",
+  "models": [
+    {
+      "id": "deepseek-v4-flash",
+      "context": "1M",
+      "bestFor": "Reasoning"
+    },
+    {
+      "id": "deepseek-v4-flash-0731",
+      "context": "1M",
+      "bestFor": "Reasoning"
+    },
+    {
+      "id": "deepseek-v4-pro",
+      "context": "1M",
+      "bestFor": "Reasoning"
+    },
+    {
+      "id": "deepseek-v4-pro-0813",
+      "context": "1M",
+      "bestFor": "Reasoning"
+    }
+  ]
+}
