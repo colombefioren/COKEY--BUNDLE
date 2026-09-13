@@ -1,0 +1,157 @@
+{
+  "id": "xkiro",
+  "displayName": "xKiro AI",
+  "operator": "xKiro AI",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A free hub advertising a large daily token allowance across third-party model families.",
+  "verdict": "usable",
+  "verdictReason": "Useful batch capacity; treat the advertised volume as unverified until your dashboard agrees.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.xkiro.com/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://xkiro.com/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "5M TPD · free models only",
+    "quotaSource": "unknown"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "deepseek/deepseek-chat-v3.1",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 2.18
+    },
+    {
+      "id": "deepseek/deepseek-v3.2",
+      "context": "128K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 2.31
+    },
+    {
+      "id": "deepseek/deepseek-v4-flash",
+      "context": "1M",
+      "bestFor": "Reasoning",
+      "latencySeconds": 1.86
+    },
+    {
+      "id": "deepseek/deepseek-v4-pro",
+      "context": "1M",
+      "bestFor": "Reasoning",
+      "latencySeconds": 7.51
+    },
+    {
+      "id": "minimax/minimax-m2.1",
+      "context": "200K",
+      "bestFor": "General",
+      "latencySeconds": 2.5
+    },
+    {
+      "id": "minimax/minimax-m3:free",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 1.93
+    },
+    {
+      "id": "minimax/minimax-m2.7",
+      "context": "200K",
+      "bestFor": "General",
+      "latencySeconds": 5.65
+    },
+    {
+      "id": "minimax/minimax-m2.7-highspeed",
+      "context": "200K",
+      "bestFor": "General",
+      "latencySeconds": 2.71
+    },
+    {
+      "id": "mistralai/codestral-2508",
+      "context": "256K",
+      "bestFor": "Code",
+      "latencySeconds": 0.6
+    },
+    {
+      "id": "mistralai/devstral-medium",
+      "context": "128K",
+      "bestFor": "Code",
+      "latencySeconds": 0.66
+    },
+    {
+      "id": "mistralai/ministral-8b",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 0.69
+    },
+    {
+      "id": "mistralai/mistral-large-2512",
+      "context": "262K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 1.6
+    },
+    {
+      "id": "mistralai/mistral-medium-3.5",
+      "context": "32K",
+      "bestFor": "General",
+      "latencySeconds": 0.74
+    },
+    {
+      "id": "qwen/qwen-plus-2025-07-28:free",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 2.33
+    },
+    {
+      "id": "qwen/qwen3-coder-plus:free",
+      "context": "128K",
+      "bestFor": "Code",
+      "latencySeconds": 2.81
+    },
+    {
+      "id": "qwen/qwen3-max:free",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 4.2
+    },
+    {
+      "id": "qwen/qwen3-vl-plus:free",
+      "context": "128K",
+      "bestFor": "Vision",
+      "latencySeconds": 2.3
+    },
+    {
+      "id": "qwen/qwen3.6-27b:free",
+      "context": "256K",
+      "bestFor": "Code",
+      "latencySeconds": 2.5
+    },
+    {
+      "id": "qwen/qwen3.6-35b-a3b:free",
+      "context": "256K",
+      "bestFor": "General",
+      "latencySeconds": 2.58
+    },
+    {
+      "id": "qwen/qwen3.7-plus:free",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 2.63
+    },
+    {
+      "id": "qwen/qwen3.8-max:free",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 3.49
+    },
+    {
+      "id": "sensenova/sensenova-6.8-flash-lite",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 4.13
+    }
+  ]
+}
