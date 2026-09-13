@@ -1,0 +1,55 @@
+{
+  "id": "requesty",
+  "displayName": "Requesty",
+  "operator": "Requesty",
+  "origin": "Germany",
+  "kind": "aggregator",
+  "summary": "An observability-first router. Its free pool re-exports the same models as the other aggregators.",
+  "verdict": "usable",
+  "verdictReason": "Fine as a fallback; not a distinct source of models.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://router.requesty.ai/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://requesty.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "200 RPD",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "google/gemma-4-31b-it",
+      "context": "32K",
+      "bestFor": "General",
+      "latencySeconds": 1.48
+    },
+    {
+      "id": "nvidia/muse-glimmer-30b",
+      "context": "131K",
+      "bestFor": "General",
+      "latencySeconds": 4.75
+    },
+    {
+      "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+      "context": "1M",
+      "bestFor": "Reasoning",
+      "latencySeconds": 1.47
+    },
+    {
+      "id": "nvidia/nemotron-3-super-120b-a12b",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 0.87
+    },
+    {
+      "id": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 0.97
+    }
+  ]
+}
