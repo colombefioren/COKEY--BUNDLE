@@ -1,0 +1,206 @@
+{
+  "id": "electronhub",
+  "displayName": "ElectronHub",
+  "operator": "ElectronHub",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A free hub with a long model list but a weekly dollar credit cap rather than a request allowance.",
+  "verdict": "limited",
+  "verdictReason": "Impressive list, single-use budget: treat it as a novelty.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.electronhub.ai/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://electronhub.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "5 RPM",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "notes": "Weekly credit cap; not suitable as a chain's first entry.",
+  "models": [
+    {
+      "id": "codestral-latest",
+      "context": "256K",
+      "bestFor": "Code",
+      "latencySeconds": 1.21
+    },
+    {
+      "id": "codestral-2508",
+      "context": "256K",
+      "bestFor": "Code",
+      "latencySeconds": 1.05
+    },
+    {
+      "id": "devstral-latest",
+      "context": "262K",
+      "bestFor": "Code",
+      "latencySeconds": 1.24
+    },
+    {
+      "id": "devstral-medium-latest",
+      "context": "262K",
+      "bestFor": "Code",
+      "latencySeconds": 1.23
+    },
+    {
+      "id": "gemini-2.5-flash-lite",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 1.11
+    },
+    {
+      "id": "gemini-3.5-flash-lite",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 1.53
+    },
+    {
+      "id": "gpt-4.1",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 1.43
+    },
+    {
+      "id": "gpt-4.1-mini",
+      "context": "1M",
+      "bestFor": "General",
+      "latencySeconds": 1.64
+    },
+    {
+      "id": "gpt-4.1-nano",
+      "context": "1M",
+      "bestFor": "Code",
+      "latencySeconds": 2.34
+    },
+    {
+      "id": "gpt-4o",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 1.52
+    },
+    {
+      "id": "gpt-4o-mini",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 1.95
+    },
+    {
+      "id": "gpt-5.4-mini",
+      "context": "400K",
+      "bestFor": "General",
+      "latencySeconds": 1.57
+    },
+    {
+      "id": "gpt-oss-120b",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 3.26
+    },
+    {
+      "id": "magistral-medium-latest",
+      "context": "262K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 1.31
+    },
+    {
+      "id": "ministral-14b-2512",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 1.06
+    },
+    {
+      "id": "ministral-3b-2512",
+      "context": "131K",
+      "bestFor": "Code",
+      "latencySeconds": 1.1
+    },
+    {
+      "id": "mistral-code-latest",
+      "context": "256K",
+      "bestFor": "Code",
+      "latencySeconds": 1.09
+    },
+    {
+      "id": "mistral-large-2512",
+      "context": "262K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 4.8
+    },
+    {
+      "id": "mistral-medium-2508",
+      "context": "131K",
+      "bestFor": "General",
+      "latencySeconds": 1.2
+    },
+    {
+      "id": "mistral-small-3.2-24b-instruct",
+      "context": "128K",
+      "bestFor": "Code",
+      "latencySeconds": 1.18
+    },
+    {
+      "id": "o3-mini",
+      "context": "200K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 3.02
+    },
+    {
+      "id": "o4-mini",
+      "context": "200K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 2.33
+    },
+    {
+      "id": "phi-4",
+      "context": "16K",
+      "bestFor": "General",
+      "latencySeconds": 1.19
+    },
+    {
+      "id": "qwen-2.5-coder-32b-instruct",
+      "context": "33K",
+      "bestFor": "Code",
+      "latencySeconds": 0.76
+    },
+    {
+      "id": "qwen3-coder-30-a3b-instruct",
+      "context": "262K",
+      "bestFor": "Code",
+      "latencySeconds": 1.07
+    },
+    {
+      "id": "qwen3.8-27b",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 1.08
+    },
+    {
+      "id": "kimi-k2.7-code",
+      "context": "262K",
+      "bestFor": "Code",
+      "latencySeconds": 2.05
+    },
+    {
+      "id": "minimax-m2.7",
+      "context": "200K",
+      "bestFor": "General",
+      "latencySeconds": 1.41
+    },
+    {
+      "id": "laguna-s-2.1",
+      "context": "262K",
+      "bestFor": "Code",
+      "latencySeconds": 2.54
+    },
+    {
+      "id": "grok-4.5",
+      "context": "500K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 1.86
+    }
+  ]
+}
