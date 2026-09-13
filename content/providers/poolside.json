@@ -1,0 +1,38 @@
+{
+  "id": "poolside",
+  "displayName": "Poolside",
+  "operator": "Poolside",
+  "origin": "United States",
+  "kind": "lab",
+  "summary": "Lab training models specifically for agentic software engineering rather than general chat.",
+  "verdict": "recommended",
+  "verdictReason": "Best coding pedigree on this list when you do not need high volume.",
+  "sourceUrl": "https://poolside.ai/",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://inference.poolside.ai/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://poolside.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "20 RPM · 200 RPD · 1M TPD",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "poolside/laguna-s-2.1",
+      "context": "256K",
+      "bestFor": "Code",
+      "latencySeconds": 1.3
+    },
+    {
+      "id": "poolside/laguna-xs-2.1",
+      "context": "128K",
+      "bestFor": "Code",
+      "latencySeconds": 0.9
+    }
+  ]
+}
