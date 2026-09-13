@@ -1,0 +1,25 @@
+{
+  "id": "cerebras",
+  "displayName": "Cerebras",
+  "operator": "Cerebras Systems",
+  "origin": "United States",
+  "kind": "inference-cloud",
+  "summary": "Wafer-scale chips serving open-weight models at very high token rates. Free tier is generous in throughput but strict on concurrency.",
+  "verdict": "usable",
+  "verdictReason": "Excellent speed, smaller daily allowance than Groq or Cloudflare.",
+  "sourceUrl": "https://www.cerebras.ai/",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.cerebras.ai/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://cloud.cerebras.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "Free tier with rate limits",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": []
+}
