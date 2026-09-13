@@ -1,0 +1,87 @@
+{
+  "id": "mistral",
+  "displayName": "Mistral AI",
+  "operator": "Mistral AI",
+  "origin": "France",
+  "kind": "lab",
+  "summary": "European frontier lab. Its dedicated code family (Codestral, Devstral) is trained for completion and agentic editing rather than general chat.",
+  "verdict": "recommended",
+  "verdictReason": "Straight from the source, and the code models are purpose-built rather than re-tuned.",
+  "sourceUrl": "https://mistral.ai/",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.mistral.ai/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://console.mistral.ai/api-keys/",
+  "docsUrl": "https://docs.mistral.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "~2–30 RPM · 50,000 TPM shared pool",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "codestral-latest",
+      "context": "256K",
+      "bestFor": "Code",
+      "latencySeconds": 0.4
+    },
+    {
+      "id": "codestral-2508",
+      "context": "256K",
+      "bestFor": "Code",
+      "latencySeconds": 0.4
+    },
+    {
+      "id": "devstral-latest",
+      "context": "262K",
+      "bestFor": "Code",
+      "latencySeconds": 1.24
+    },
+    {
+      "id": "devstral-medium-latest",
+      "context": "262K",
+      "bestFor": "Code",
+      "latencySeconds": 1.23
+    },
+    {
+      "id": "ministral-14b-latest",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 0.4
+    },
+    {
+      "id": "ministral-8b-latest",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 0.5
+    },
+    {
+      "id": "ministral-3b-latest",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 0.4
+    },
+    {
+      "id": "mistral-code-latest",
+      "context": "128K",
+      "bestFor": "Code",
+      "latencySeconds": 0.4
+    },
+    {
+      "id": "mistral-medium-2508",
+      "context": "131K",
+      "bestFor": "General",
+      "latencySeconds": 1.2
+    },
+    {
+      "id": "mistral-small-3.2-24b-instruct",
+      "context": "128K",
+      "bestFor": "Code",
+      "latencySeconds": 1.18
+    }
+  ]
+}
