@@ -1,0 +1,43 @@
+{
+  "id": "llm7",
+  "displayName": "LLM7.IO",
+  "operator": "LLM7.IO",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A community free hub with a daily request and token allowance.",
+  "verdict": "usable",
+  "verdictReason": "Reasonable fallback volume, unclear operator.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.llm7.io/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://llm7.io/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "40 RPM",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "codestral-latest",
+      "context": "32K",
+      "bestFor": "Code",
+      "latencySeconds": 1
+    },
+    {
+      "id": "minimax-m2.7",
+      "context": "180K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 1.8
+    },
+    {
+      "id": "mistral-Nemo-Instruct-2407",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 3.1
+    }
+  ]
+}
