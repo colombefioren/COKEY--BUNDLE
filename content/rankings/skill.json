@@ -1,0 +1,210 @@
+[
+  {
+    "model": "Poolside laguna-s-2.1",
+    "providerId": "poolside",
+    "tierName": "S",
+    "sweScore": 62.4,
+    "reason": "Trained specifically for agentic software engineering."
+  },
+  {
+    "model": "Poolside laguna-xs-2.1",
+    "providerId": "poolside",
+    "tierName": "S",
+    "sweScore": 48.1,
+    "reason": "Smaller sibling of the same purpose-built coding line."
+  },
+  {
+    "model": "gpt-5.3-codex",
+    "providerId": "voidai",
+    "tierName": "S",
+    "sweScore": 74.9,
+    "reason": "Codex-branded flagship exposed through Void AI."
+  },
+  {
+    "model": "Mistral codestral-latest",
+    "providerId": "mistral",
+    "tierName": "S",
+    "sweScore": 51.3,
+    "reason": "Mistral's dedicated completion model."
+  },
+  {
+    "model": "Mistral devstral-latest",
+    "providerId": "mistral",
+    "tierName": "S",
+    "sweScore": 53.6,
+    "reason": "Dedicated agentic editing model from the same lab."
+  },
+  {
+    "model": "Qwen3-Coder-480B-A35B",
+    "providerId": "huggingface",
+    "tierName": "S",
+    "sweScore": 67,
+    "reason": "Dedicated Qwen coder line, largest variant."
+  },
+  {
+    "model": "Qwen3-Coder-30B-A3B",
+    "providerId": "huggingface",
+    "tierName": "S",
+    "sweScore": 51.6,
+    "reason": "Mixture-of-experts coder with a small active footprint."
+  },
+  {
+    "model": "Kimi-K2.7-Code",
+    "providerId": "voidai",
+    "tierName": "S",
+    "sweScore": 65.8,
+    "reason": "Moonshot's dedicated code variant."
+  },
+  {
+    "model": "muse-spark-1.3-contributor-free",
+    "providerId": "opencode-zen",
+    "tierName": "S",
+    "sweScore": 59.2,
+    "reason": "The whole gateway is curated for coding agents, not general chat."
+  },
+  {
+    "model": "DeepSeek-V4-Pro",
+    "providerId": "xkiro",
+    "tierName": "S",
+    "sweScore": 71.6,
+    "reason": "DeepSeek's line has led open-weight code benchmarks."
+  },
+  {
+    "model": "DeepSeek-V3.2",
+    "providerId": "xkiro",
+    "tierName": "S",
+    "sweScore": 61.9,
+    "reason": "Widely reproduced open-weight coding baseline."
+  },
+  {
+    "model": "gpt-oss-120b",
+    "providerId": "groq",
+    "tierName": "A",
+    "sweScore": 41.7,
+    "reason": "Open-weight generalist that codes well and runs extremely fast on Groq."
+  },
+  {
+    "model": "GLM-5.2",
+    "providerId": "zai",
+    "tierName": "A",
+    "sweScore": 55.4,
+    "reason": "Strong tool calling and long-context reasoning."
+  },
+  {
+    "model": "GLM-4.7",
+    "providerId": "zai",
+    "tierName": "A",
+    "sweScore": 49.8,
+    "reason": "Previous GLM generation, still a solid generalist."
+  },
+  {
+    "model": "Qwen3.8-27B",
+    "providerId": "groq",
+    "tierName": "A",
+    "sweScore": 44.3,
+    "reason": "Code-tagged on Groq, good balance of speed and quality."
+  },
+  {
+    "model": "Nemotron-3-Super-120B",
+    "providerId": "nvidia",
+    "tierName": "A",
+    "sweScore": 42.1,
+    "reason": "NVIDIA's open generalist, dependable on NIM."
+  },
+  {
+    "model": "MiniMax-M2.7",
+    "providerId": "zylo",
+    "tierName": "A",
+    "sweScore": 50.2,
+    "reason": "Strong agentic behaviour for its size."
+  },
+  {
+    "model": "command-a-plus",
+    "providerId": "cohere",
+    "tierName": "A",
+    "sweScore": 38.9,
+    "reason": "Enterprise tool-calling focus."
+  },
+  {
+    "model": "Qwen2.5-Coder-32B",
+    "providerId": "cloudflare",
+    "tierName": "A",
+    "sweScore": 31.4,
+    "reason": "The classic open coder, served at the edge."
+  },
+  {
+    "model": "gpt-oss-20b",
+    "providerId": "groq",
+    "tierName": "B",
+    "sweScore": 28.6,
+    "reason": "Fast and cheap; fine as a fallback entry."
+  },
+  {
+    "model": "Ministral 14B",
+    "providerId": "mistral",
+    "tierName": "B",
+    "sweScore": 22.3,
+    "reason": "Small generalist, useful for classification-shaped work."
+  },
+  {
+    "model": "Gemini 3.x flash",
+    "providerId": "gemini",
+    "tierName": "B",
+    "sweScore": 40.5,
+    "reason": "Huge context helps on big repositories, but it is not code-specialised."
+  },
+  {
+    "model": "Llama-4-Scout",
+    "providerId": "groq",
+    "tierName": "B",
+    "sweScore": 24.7,
+    "reason": "Broad model, mid-tier at code."
+  },
+  {
+    "model": "Intern s2-preview",
+    "providerId": "internai",
+    "tierName": "B",
+    "sweScore": 35.8,
+    "reason": "Strong output, slow enough that it hurts as a first entry."
+  },
+  {
+    "model": "Sapphira-L3.3-70b",
+    "tierName": "C",
+    "sweScore": 8.2,
+    "reason": "Roleplay fine-tune."
+  },
+  {
+    "model": "Violet-Lotus-12B",
+    "tierName": "C",
+    "sweScore": 5.4,
+    "reason": "Roleplay fine-tune."
+  },
+  {
+    "model": "Euryale-v2.1",
+    "tierName": "C",
+    "sweScore": 6.1,
+    "reason": "Roleplay fine-tune."
+  },
+  {
+    "model": "MythoMax-L2-13B",
+    "tierName": "C",
+    "sweScore": 4.7,
+    "reason": "Roleplay fine-tune."
+  },
+  {
+    "model": "hermes-4-14b",
+    "tierName": "C",
+    "sweScore": 9.3,
+    "reason": "General chat tuning, not code."
+  },
+  {
+    "model": "Riva (translate)",
+    "tierName": "C",
+    "reason": "Translation only."
+  },
+  {
+    "model": "Llama 3.2 1B / 3B",
+    "tierName": "C",
+    "reason": "Too small to hold a codebase in context."
+  }
+]

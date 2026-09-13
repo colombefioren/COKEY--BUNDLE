@@ -1,0 +1,121 @@
+[
+  {
+    "family": "gpt-oss-120b",
+    "alsoOn": [
+      "cloudflare",
+      "huggingface",
+      "electronhub",
+      "fastrouter",
+      "poixe",
+      "tokenreply",
+      "voidai",
+      "ollama",
+      "literouter"
+    ],
+    "keep": "groq",
+    "fallback": "cloudflare"
+  },
+  {
+    "family": "gpt-oss-20b",
+    "alsoOn": [
+      "cloudflare",
+      "helixmind",
+      "evolvex",
+      "poixe",
+      "zylo",
+      "nvidia",
+      "fastrouter",
+      "literouter",
+      "tokenreply",
+      "ollama"
+    ],
+    "keep": "groq",
+    "fallback": "zylo"
+  },
+  {
+    "family": "qwen3.8-27b",
+    "alsoOn": [
+      "cloudflare",
+      "orcarouter",
+      "yolo",
+      "voidai",
+      "literouter"
+    ],
+    "keep": "groq",
+    "fallback": "orcarouter"
+  },
+  {
+    "family": "DeepSeek V4 Pro / Flash",
+    "alsoOn": [
+      "helixmind",
+      "gonka",
+      "voidai",
+      "huggingface",
+      "literouter",
+      "orcarouter"
+    ],
+    "keep": "xkiro",
+    "fallback": "voidai"
+  },
+  {
+    "family": "Poolside laguna-s / xs-2.1",
+    "alsoOn": [
+      "openrouter",
+      "kilo",
+      "nvidia",
+      "opencode-zen",
+      "literouter",
+      "tokenreply",
+      "evolvex"
+    ],
+    "keep": "poolside",
+    "fallback": "opencode-zen"
+  },
+  {
+    "family": "codestral-latest / 2508",
+    "alsoOn": [
+      "electronhub",
+      "llm7",
+      "xkiro"
+    ],
+    "keep": "mistral",
+    "fallback": "xkiro"
+  },
+  {
+    "family": "nemotron-3-super-120b",
+    "alsoOn": [
+      "cloudflare",
+      "openrouter",
+      "kilo",
+      "requesty",
+      "evolvex",
+      "tokenreply",
+      "anyapi",
+      "ollama"
+    ],
+    "keep": "nvidia",
+    "fallback": "cloudflare"
+  },
+  {
+    "family": "OpenRouter free-pool clones",
+    "alsoOn": [
+      "kilo",
+      "openrouter",
+      "anyapi",
+      "naga",
+      "requesty",
+      "tokenreply"
+    ],
+    "keep": "anyapi or kilo",
+    "fallback": "requesty"
+  },
+  {
+    "family": "qwen plus / flash :free",
+    "alsoOn": [
+      "voidai",
+      "poixe"
+    ],
+    "keep": "xkiro",
+    "fallback": "voidai"
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "provider": "LLM.Kiwi and LiteRouter",
+    "reason": "Both fail structured output, which breaks tool calling for coding agents. Fine for casual chat only."
+  },
+  {
+    "provider": "TokenReply",
+    "reason": "A single-digit request-per-minute cap plus 10 to 22 second latency. Too thin and too slow."
+  },
+  {
+    "provider": "Routeway AI",
+    "reason": "Two models, one around 11 seconds of latency, and the same models are better served by Groq or Cloudflare."
+  },
+  {
+    "provider": "Odirouter",
+    "reason": "Advertises free access to vendor models that vendors do not wholesale to resellers. Whoever answers is almost certainly not that model."
+  },
+  {
+    "provider": "Gonka Broker",
+    "reason": "Phone verification for three models that are all available elsewhere without friction."
+  },
+  {
+    "provider": "FreeInference",
+    "reason": "Manual account review for three models."
+  },
+  {
+    "provider": "ElectronHub and Hugging Face",
+    "reason": "$0.25/week and $0.10/month caps mean a handful of calls. Occasional novelties, not infrastructure."
+  },
+  {
+    "provider": "Yolo-Auto",
+    "reason": "One model, about fifteen requests per day, with better equivalents elsewhere."
+  }
+]
