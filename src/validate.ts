@@ -210,11 +210,13 @@ export function validateContent(raw: RawContent, options: ValidateOptions = {}):
       }
     };
 
+    // Note the hyphenated keys: the source map is keyed by content file name,
+    // because that is what an editor needs to be told to open.
     for (const entry of rankings.skill) {
       if (entry.providerId) check(rankings.sources.skill!, entry.providerId, "providerId");
     }
     for (const entry of rankings.rateLimits) {
-      check(rankings.sources.rateLimits!, entry.providerId, "providerId");
+      check(rankings.sources["rate-limits"]!, entry.providerId, "providerId");
     }
     for (const entry of rankings.combined) {
       check(rankings.sources.combined!, entry.providerId, "providerId");
@@ -240,15 +242,17 @@ export function validateContent(raw: RawContent, options: ValidateOptions = {}):
 
     for (const entry of rankings.dropList) {
       const provider = providers.find(
-        (candidate) =>
-          candidate.id === entry.provider || candidate.displayName === entry.provider,
+        (candidate) => candidate.id === entry.provider || candidate.displayName === entry.provider,
       );
-      if (!provider) {
-        warn(
-          rankings.sources.dropList!,
-          `"${entry.provider}" is not in the catalog`,
-          "provider",
-        );
+      /*
+       * A drop-list entry is prose as often as it is an id — "ElectronHub and
+       * Hugging Face" is a legitimate way to name a pair of services. Only a
+       * value that looks like an id and matches nothing is worth a warning;
+       * otherwise every sentence in the list becomes noise.
+       */
+      const looksLikeId = /^[a-z0-9-]+$/.test(entry.provider);
+      if (!provider && looksLikeId) {
+        warn(rankings.sources["drop-list"]!, `"${entry.provider}" is not in the catalog`, "provider");
       }
     }
   }
