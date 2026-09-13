@@ -1,0 +1,97 @@
+{
+  "id": "kilo",
+  "displayName": "Kilo Gateway",
+  "operator": "Kilo Code",
+  "origin": "United States",
+  "kind": "gateway",
+  "summary": "A coding-agent extension that also exposes an OpenAI-compatible gateway. Much of its free catalogue mirrors OpenRouter's.",
+  "verdict": "usable",
+  "verdictReason": "Convenient if you already use the extension, otherwise redundant with OpenRouter.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.kilo.ai/api/gateway",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://app.kilo.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "5 RPM · 200 RPD",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "cohere/north-mini-code:free",
+      "context": "128K",
+      "bestFor": "Code",
+      "latencySeconds": 1.5
+    },
+    {
+      "id": "dots-studio/dots-3-note-preview:free",
+      "context": "32K",
+      "bestFor": "General",
+      "latencySeconds": 1.6
+    },
+    {
+      "id": "inclusionai/ling-3.0-flash-fin:free",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 1.5
+    },
+    {
+      "id": "inclusionai/ling-3.0-flash-sante:free",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 1.5
+    },
+    {
+      "id": "liquid/lfm-2.5-2.6b:free",
+      "context": "32K",
+      "bestFor": "General",
+      "latencySeconds": 1.6
+    },
+    {
+      "id": "nex-agi/nex-n2.5-mini:free",
+      "context": "32K",
+      "bestFor": "General",
+      "latencySeconds": 1.5
+    },
+    {
+      "id": "nex-agi/nex-n2.5-pro:free",
+      "context": "32K",
+      "bestFor": "General",
+      "latencySeconds": 1.5
+    },
+    {
+      "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+      "context": "128K",
+      "bestFor": "Reasoning",
+      "latencySeconds": 2.5
+    },
+    {
+      "id": "nvidia/nemotron-3-super-120b-a12b:free",
+      "context": "262K",
+      "bestFor": "General",
+      "latencySeconds": 0.8
+    },
+    {
+      "id": "nvidia/nemotron-3.5-lightning:free",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 1.6
+    },
+    {
+      "id": "poolside/laguna-xs-2.1:free",
+      "context": "128K",
+      "bestFor": "Code",
+      "latencySeconds": 1.9
+    },
+    {
+      "id": "stepfun/step-3.7-flash:free",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 2.5
+    }
+  ]
+}
