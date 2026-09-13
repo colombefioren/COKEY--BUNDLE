@@ -1,0 +1,24 @@
+{
+  "id": "llmkiwi",
+  "displayName": "LLM.Kiwi",
+  "operator": "LLM.Kiwi",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A free hub that does not reliably honour structured output.",
+  "verdict": "avoid",
+  "verdictReason": "Schema failures break tool calling, which is the whole point of an agent.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.llm.kiwi/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://llm.kiwi/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "40 RPH",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": []
+}
