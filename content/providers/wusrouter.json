@@ -1,0 +1,34 @@
+{
+  "id": "wusrouter",
+  "displayName": "WusRouter",
+  "operator": "Not publicly disclosed",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "No dossier yet for this provider. Add one in the catalog when you learn who runs it.",
+  "verdict": "limited",
+  "verdictReason": "An undocumented operator cannot be recommended or ruled out.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.wusrouter.com/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://wusrouter.com/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "Selected free models",
+    "quotaSource": "unknown"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "notes": "Imported from the legacy catalog without a dossier. Needs an editor.",
+  "models": [
+    {
+      "id": "DeepSeek-R1-0528-Qwen3-8B",
+      "bestFor": "Reasoning"
+    },
+    {
+      "id": "qwen3.8-27b",
+      "bestFor": "General"
+    }
+  ]
+}
