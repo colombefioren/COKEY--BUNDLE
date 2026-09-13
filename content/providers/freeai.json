@@ -1,0 +1,37 @@
+{
+  "id": "freeai",
+  "displayName": "Free.ai",
+  "operator": "Free.ai",
+  "origin": "undisclosed",
+  "kind": "aggregator",
+  "summary": "A free hub fronting several open-weight models.",
+  "verdict": "limited",
+  "verdictReason": "Small allowances and no published operator.",
+  "reviewedAt": "2026-09-13",
+  "baseUrl": "https://api.free.ai/v1",
+  "apiStyle": "openai",
+  "authScheme": "bearer",
+  "signupUrl": "https://free.ai/",
+  "freeTier": {
+    "advertised": true,
+    "summary": "10 RPM · 30,000 TPD",
+    "quotaSource": "provider"
+  },
+  "credentialFields": [
+    "secret"
+  ],
+  "models": [
+    {
+      "id": "qwen3-8b",
+      "context": "128K",
+      "bestFor": "General",
+      "latencySeconds": 1.37
+    },
+    {
+      "id": "qwen-vl",
+      "context": "32K",
+      "bestFor": "Vision",
+      "latencySeconds": 2.31
+    }
+  ]
+}
