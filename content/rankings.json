@@ -568,5 +568,17 @@
       "provider": "Yolo-Auto",
       "reason": "One model, about fifteen requests per day, with better equivalents elsewhere."
     }
+  ],
+  "funFacts": [
+    "Did you know COKEY was built with the help of COKEY? Development leaned on the same free-tier keys this gateway pools for everyone else.",
+    "A COKEY chain never rotates a key over a request-shaped failure like a too-large context window - only a credential-shaped one, like a rate limit, actually moves to the next key.",
+    "Two keys from the same provider are guaranteed different exit IPs the moment the automatic egress pool is switched on. Keys from different providers are allowed to share one, since nothing correlates them upstream.",
+    "The 'Quota: Unknown' label isn't a bug, it's policy. COKEY only ever prints a rate limit it actually read from a provider's own response headers.",
+    "COKEY's model test button sends one real request, not a synthetic ping. A green check means an actual 200 came back from the provider, with the reply shown.",
+    "This bundle is the only thing COKEY ever fetches from the internet on its own initiative, and only when a person clicks the button. Never on a timer, never at startup.",
+    "The routing invariant fits in five words: node, then key, then node. A chain drains every key of its first node before it ever considers falling through.",
+    "COKEY's egress-pool assignment is deterministic, derived from the provider id and the pool order rather than randomised, so it survives a restart without reshuffling anyone's exit IP.",
+    "Every secret COKEY stores is AES-256-GCM encrypted at rest, with a format version baked into the ciphertext prefix so old data keeps working across upgrades.",
+    "The two little leaves on the COKEY logo are called the 'broke princess sprout' right there in the SVG source comments."
   ]
 }
