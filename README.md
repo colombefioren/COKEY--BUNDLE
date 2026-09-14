@@ -25,8 +25,17 @@ Its shape mirrors `RankingsView` in COKEY's own `src/catalog/rankings.ts`:
 
 ```json
 {
-  "tiers": [{ "name": "S", "label": "…", "blurb": "…" }],
-  "skill": [{ "model": "…", "providerId": "…", "tierName": "S", "sweScore": 62.4, "reason": "…" }],
+  "tiers": [{ "name": "S", "label": "…", "labelFr": "…", "blurb": "…", "blurbFr": "…" }],
+  "skill": [
+    {
+      "model": "…",
+      "providerId": "…",
+      "tierName": "S",
+      "sweScore": 62.4,
+      "reason": "…",
+      "reasonFr": "…"
+    }
+  ],
   "rateLimit": [
     {
       "providerId": "…",
@@ -34,16 +43,21 @@ Its shape mirrors `RankingsView` in COKEY's own `src/catalog/rankings.ts`:
       "tier": 1,
       "quota": "…",
       "provenance": "operator",
-      "reliability": "solid"
+      "reliability": "solid",
+      "note": "…",
+      "noteFr": "…"
     }
   ],
-  "combined": [{ "rank": 1, "providerId": "…", "model": "…", "tier": 1, "why": "…" }],
+  "combined": [{ "rank": 1, "providerId": "…", "model": "…", "tier": 1, "why": "…", "whyFr": "…" }],
   "redundancy": [{ "family": "…", "alsoOn": ["…"], "keep": "…", "fallback": "…" }],
-  "dropList": [{ "provider": "…", "reason": "…" }],
+  "dropList": [{ "provider": "…", "reason": "…", "reasonFr": "…" }],
   "bottomLine": "…",
+  "bottomLineFr": "…",
   "disclaimer": "…",
+  "disclaimerFr": "…",
   "sources": [{ "label": "…", "url": "https://…" }],
-  "funFacts": ["…", "…"]
+  "funFacts": ["…", "…"],
+  "funFactsFr": ["…", "…"]
 }
 ```
 
@@ -52,6 +66,13 @@ Its shape mirrors `RankingsView` in COKEY's own `src/catalog/rankings.ts`:
 `"solid" | "watch" | "avoid"`. `funFacts` is optional — a plain array of short strings, each
 shown as one card in the dashboard's bottom-right Insights corner. Keep them short: they render
 in a small card, not a paragraph.
+
+Every `xFr` field is the French sibling of `x` and is entirely optional — the dashboard falls
+back to the English field when a French one is missing, so a partial translation never breaks
+anything. **Never translate a `model`, `providerId`, `provider`, `family`, `alsoOn`, `keep` or
+`fallback` value** — those are identifiers the dashboard matches against its own catalog and
+against the model/provider names typed into your chains; only the prose fields (`label`, `blurb`,
+`reason`, `note`, `why`, `bottomLine`, `disclaimer`, `funFacts`) get a translation.
 
 ## Publishing an update
 
