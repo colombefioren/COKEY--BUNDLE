@@ -349,12 +349,14 @@
 
   function blank() {
     return {
+      meta: { lastResearched: "", methodology: "", methodologyFr: "" },
       tiers: [],
       skill: [],
       rateLimit: [],
       combined: [],
       redundancy: [],
       dropList: [],
+      worthTryingWithCaveats: [],
       bottomLine: "",
       bottomLineFr: "",
       disclaimer: "",
@@ -458,9 +460,9 @@
 
   function exportObject() {
     const order = [
-      "tiers", "skill", "rateLimit", "combined", "redundancy", "dropList",
-      "bottomLine", "bottomLineFr", "disclaimer", "disclaimerFr", "sources",
-      "funFacts", "funFactsFr",
+      "meta", "tiers", "skill", "rateLimit", "combined", "redundancy", "dropList",
+      "worthTryingWithCaveats", "bottomLine", "bottomLineFr", "disclaimer", "disclaimerFr",
+      "sources", "funFacts", "funFactsFr",
     ];
     const out = {};
     for (const key of order) out[key] = state[key];
@@ -661,6 +663,13 @@
     { key: "alsoOn", label: "Also on (comma-separated provider ids)", type: "list", span2: true },
     { key: "keep", label: "Keep (provider id)", type: "text", datalist: "dl-providers" },
     { key: "fallback", label: "Fallback (provider id)", type: "text", datalist: "dl-providers" },
+    { key: "note", label: "Note (EN, optional)", type: "textarea", span2: true },
+    { key: "noteFr", label: "Note (FR, optional)", type: "textarea", span2: true },
+  ];
+  const WORTH_TRYING_FIELDS = [
+    { key: "provider", label: "Provider", type: "text" },
+    { key: "note", label: "Caveat (EN)", type: "textarea", span2: true },
+    { key: "noteFr", label: "Caveat (FR)", type: "textarea", span2: true },
   ];
   const DROP_FIELDS = [
     { key: "provider", label: "Provider", type: "text" },
@@ -886,6 +895,21 @@
   }
 
   function renderMeta(container) {
+    if (!state.meta) state.meta = { lastResearched: "", methodology: "", methodologyFr: "" };
+
+    const metaBlock = document.createElement("div");
+    metaBlock.className = "meta-block";
+    metaBlock.innerHTML = "<h3>Research meta</h3>";
+    metaBlock.appendChild(
+      renderField(state.meta, { key: "lastResearched", label: "Last researched (YYYY-MM-DD)", type: "text" }),
+    );
+    const metaPair = document.createElement("div");
+    metaPair.className = "lang-pair";
+    metaPair.appendChild(renderField(state.meta, { key: "methodology", label: "Methodology (English)", type: "textarea" }));
+    metaPair.appendChild(renderField(state.meta, { key: "methodologyFr", label: "Méthodologie (Français)", type: "textarea" }));
+    metaBlock.appendChild(metaPair);
+    container.appendChild(metaBlock);
+
     const block = document.createElement("div");
     block.className = "meta-block";
     block.innerHTML = "<h3>Bottom line</h3>";
@@ -911,6 +935,12 @@
     block3.innerHTML = "<h3>Sources</h3>";
     container.appendChild(block3);
     renderList(block3, state.sources, SOURCE_FIELDS, "source");
+
+    const block3b = document.createElement("div");
+    block3b.className = "meta-block";
+    block3b.innerHTML = "<h3>Worth trying, with caveats</h3>";
+    container.appendChild(block3b);
+    renderList(block3b, state.worthTryingWithCaveats, WORTH_TRYING_FIELDS, "caveat entry");
 
     const block4 = document.createElement("div");
     block4.className = "meta-block";
