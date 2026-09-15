@@ -237,8 +237,30 @@
   .lang-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   @media (max-width: 560px) { .lang-pair { grid-template-columns: 1fr; } }
 
-  .fact-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: start; margin-bottom: 8px; }
-  @media (max-width: 560px) { .fact-row { grid-template-columns: 1fr; } }
+  .fact-card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px 14px 46px;
+    margin-bottom: 12px;
+  }
+  .fact-card::before {
+    content: "\201C";
+    position: absolute;
+    left: 14px;
+    top: 8px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 34px;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.55;
+  }
+  .fact-card .entry-head { margin-bottom: 10px; }
+  .fact-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 560px) { .fact-pair { grid-template-columns: 1fr; } }
+  .fact-pair textarea { min-height: 64px; }
 
   .hint { color: var(--muted); font-size: 12px; margin: 0 0 12px; }
   code { background: var(--surface-2); padding: 1px 5px; border-radius: 5px; font-size: 12px; }
@@ -669,6 +691,12 @@
     [list[i], list[j]] = [list[j], list[i]];
   }
 
+  /** funFacts and funFactsFr are two parallel arrays, so a reorder has to move the same index in both. */
+  function moveFact(i, dir) {
+    moveItem(state.funFacts, i, dir);
+    moveItem(state.funFactsFr, i, dir);
+  }
+
   function iconBtn(label, onClick, disabled, danger) {
     const b = document.createElement("button");
     b.type = "button";
@@ -787,28 +815,61 @@
 
     const max = Math.max(state.funFacts.length, state.funFactsFr.length);
     for (let i = 0; i < max; i++) {
-      const row = document.createElement("div");
-      row.className = "fact-row";
+      const card = document.createElement("div");
+      card.className = "fact-card";
 
-      const en = document.createElement("textarea");
-      en.value = state.funFacts[i] || "";
-      en.placeholder = "English";
-      en.addEventListener("input", () => { state.funFacts[i] = en.value; markDirty(); });
+      const head = document.createElement("div");
+      head.className = "entry-head";
+      const idx = document.createElement("span");
+      idx.className = "entry-index";
+      idx.textContent = `Fun fact #${i + 1}`;
+      head.appendChild(idx);
 
-      const fr = document.createElement("textarea");
-      fr.value = state.funFactsFr[i] || "";
-      fr.placeholder = "Français (optional)";
-      fr.addEventListener("input", () => { state.funFactsFr[i] = fr.value; markDirty(); });
-
-      row.appendChild(en);
-      row.appendChild(fr);
-      row.appendChild(iconBtn("✕", () => {
+      const controls = document.createElement("div");
+      controls.className = "entry-controls";
+      controls.appendChild(iconBtn("↑", () => {
+        moveFact(i, -1);
+        markDirty();
+        renderActiveTab();
+      }, i === 0));
+      controls.appendChild(iconBtn("↓", () => {
+        moveFact(i, 1);
+        markDirty();
+        renderActiveTab();
+      }, i === max - 1));
+      controls.appendChild(iconBtn("✕", () => {
         state.funFacts.splice(i, 1);
         state.funFactsFr.splice(i, 1);
         markDirty();
         renderActiveTab();
       }, false, true));
-      container.appendChild(row);
+      head.appendChild(controls);
+      card.appendChild(head);
+
+      const pair = document.createElement("div");
+      pair.className = "fact-pair";
+
+      const enField = document.createElement("div");
+      enField.className = "field";
+      const enLabel = document.createElement("label");
+      enLabel.textContent = "English";
+      const en = document.createElement("textarea");
+      en.value = state.funFacts[i] || "";
+      en.addEventListener("input", () => { state.funFacts[i] = en.value; markDirty(); });
+      enField.append(enLabel, en);
+
+      const frField = document.createElement("div");
+      frField.className = "field";
+      const frLabel = document.createElement("label");
+      frLabel.textContent = "Français (optional)";
+      const fr = document.createElement("textarea");
+      fr.value = state.funFactsFr[i] || "";
+      fr.addEventListener("input", () => { state.funFactsFr[i] = fr.value; markDirty(); });
+      frField.append(frLabel, fr);
+
+      pair.append(enField, frField);
+      card.appendChild(pair);
+      container.appendChild(card);
     }
 
     const addBtn = document.createElement("button");
