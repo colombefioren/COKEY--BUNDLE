@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>cokey-bundle Editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@400;500;600;650;700&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --font-display: "Instrument Serif", Georgia, serif;
+    --font-body: "Work Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+    --ground: #fffaf7;
+    --surface: #ffffff;
+    --surface-2: #fdf6fa;
+    --border: #f0dcea;
+    --border-strong: #ecd0e2;
+    --text: #2b1a2f;
+    --muted: #6d5871;
+    --accent: #dd5c95;
+    --accent-ink: #ffffff;
+    --accent-soft: #ffeaf4;
+    --sage: #4f8f6a;
+    --sage-soft: #e6f3ec;
+    --rose: #b4425c;
+    --rose-soft: #fbe6ea;
+    --peach: #b3702f;
+    --peach-soft: #fbeee0;
+    --shadow: 0 16px 40px -24px rgba(60, 20, 40, 0.35);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #1c1719;
+      --surface: #241e21;
+      --surface-2: #2b2327;
+      --border: #3a2f34;
+      --border-strong: #4a3c42;
+      --text: #f1e6ea;
+      --muted: #ab98a1;
+      --accent: #ef8bb2;
+      --accent-ink: #2b1a2f;
+      --accent-soft: #3a2530;
+      --sage: #8fbfa2;
+      --sage-soft: #1f2e26;
+      --rose: #e18b9b;
+      --rose-soft: #3a2226;
+      --peach: #e0ab73;
+      --peach-soft: #382c1e;
+      --shadow: 0 16px 40px -24px rgba(0, 0, 0, 0.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #1c1719;
+    --surface: #241e21;
+    --surface-2: #2b2327;
+    --border: #3a2f34;
+    --border-strong: #4a3c42;
+    --text: #f1e6ea;
+    --muted: #ab98a1;
+    --accent: #ef8bb2;
+    --accent-ink: #2b1a2f;
+    --accent-soft: #3a2530;
+    --sage: #8fbfa2;
+    --sage-soft: #1f2e26;
+    --rose: #e18b9b;
+    --rose-soft: #3a2226;
+    --peach: #e0ab73;
+    --peach-soft: #382c1e;
+    --shadow: 0 16px 40px -24px rgba(0, 0, 0, 0.6);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--text);
+    font: 14px/1.55 var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  h1, h2, h3 { font-family: var(--font-display); font-style: italic; font-weight: 400; margin: 0; text-wrap: balance; }
+
+  /* ---------------- password gate ---------------- */
+  #gate {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  #gate .card {
+    width: 100%;
+    max-width: 360px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 26px;
+    box-shadow: var(--shadow);
+  }
+  #gate h1 { font-size: 26px; margin-bottom: 6px; }
+  #gate p { color: var(--muted); font-size: 13px; margin: 0 0 18px; }
+  #gate input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border-strong);
+    background: var(--ground);
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  #gate button {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: none;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 650;
+    cursor: pointer;
+  }
+  #gate .error { color: var(--rose); font-size: 12.5px; min-height: 16px; margin-top: 8px; }
+
+  /* ---------------- app shell ---------------- */
+  #app { display: none; max-width: 980px; margin: 0 auto; padding: 24px 20px 80px; }
+  header.top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  header.top h1 { font-size: 28px; }
+  #status { font-size: 12.5px; color: var(--muted); margin: 0 0 18px; }
+  #status .dirty { color: var(--peach); font-weight: 650; }
+  #status .clean { color: var(--sage); font-weight: 650; }
+
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .toolbar button, .toolbar label.file-btn {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    cursor: pointer;
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+  .toolbar button.primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+  .toolbar input[type="file"] { display: none; }
+
+  #issues {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    font-size: 12.5px;
+    background: var(--surface);
+  }
+  #issues.ok { border-color: var(--sage); background: var(--sage-soft); color: var(--sage); }
+  #issues.warn { border-color: var(--peach); background: var(--peach-soft); }
+  #issues.err { border-color: var(--rose); background: var(--rose-soft); }
+  #issues ul { margin: 6px 0 0; padding-left: 18px; }
+
+  nav.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+  nav.tabs button {
+    padding: 7px 13px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  nav.tabs button.active { background: var(--accent-soft); color: var(--accent); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .entry-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .entry-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .entry-index { font-size: 11px; font-weight: 650; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; }
+  .entry-controls { display: flex; gap: 4px; }
+  .entry-controls button {
+    width: 26px; height: 26px;
+    border-radius: 8px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface-2);
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .entry-controls button:disabled { opacity: 0.35; cursor: default; }
+  .entry-controls button.danger:hover { background: var(--rose-soft); border-color: var(--rose); color: var(--rose); }
+
+  .field-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  .field-grid .span2 { grid-column: 1 / -1; }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label { font-size: 10.5px; font-weight: 650; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+  .field input, .field select, .field textarea {
+    padding: 7px 9px;
+    border-radius: 8px;
+    border: 1px solid var(--border-strong);
+    background: var(--ground);
+    color: var(--text);
+    resize: vertical;
+    min-height: 34px;
+  }
+  .field textarea { min-height: 52px; }
+
+  .add-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1.5px dashed var(--border-strong);
+    background: transparent;
+    color: var(--accent);
+    font-weight: 650;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+
+  .meta-block { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 14px; }
+  .meta-block h3 { font-size: 16px; margin-bottom: 10px; }
+  .lang-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 560px) { .lang-pair { grid-template-columns: 1fr; } }
+
+  .fact-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: start; margin-bottom: 8px; }
+  @media (max-width: 560px) { .fact-row { grid-template-columns: 1fr; } }
+
+  .hint { color: var(--muted); font-size: 12px; margin: 0 0 12px; }
+  code { background: var(--surface-2); padding: 1px 5px; border-radius: 5px; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="card">
+    <h1>cokey-bundle</h1>
+    <p>Sign in to edit the ranking boards and fun facts.</p>
+    <input id="gate-input" type="password" placeholder="Password" autocomplete="off" />
+    <button id="gate-submit">Unlock</button>
+    <div class="error" id="gate-error"></div>
+  </div>
+</div>
+
+<div id="app">
+  <header class="top">
+    <h1>cokey-bundle editor</h1>
+    <span></span>
+  </header>
+  <p id="status">Loading…</p>
+
+  <div class="toolbar">
+    <button id="btn-download" class="primary">Download rankings.json</button>
+    <button id="btn-copy">Copy JSON</button>
+    <label class="file-btn">Load a JSON file…<input id="file-input" type="file" accept="application/json" /></label>
+    <button id="btn-reload">Reload from content/rankings.json</button>
+  </div>
+
+  <div id="issues"></div>
+
+  <nav class="tabs" id="tabs"></nav>
+
+  <div id="panels"></div>
+</div>
+
+<datalist id="dl-providers"></datalist>
+<datalist id="dl-models"></datalist>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ---------------- password gate ---------------- */
+  const ADMIN_HASH = "81c1d46470cb48d94fb7bfc6ce11d703cc2c672081eb9b45977e23024d9ad133";
+
+  async function sha256Hex(text) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+    return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function tryUnlock() {
+    const input = document.getElementById("gate-input");
+    const err = document.getElementById("gate-error");
+    const hash = await sha256Hex(input.value);
+    if (hash === ADMIN_HASH) {
+      sessionStorage.setItem("cokey-bundle-unlocked", "1");
+      document.getElementById("gate").style.display = "none";
+      document.getElementById("app").style.display = "block";
+      boot();
+    } else {
+      err.textContent = "Wrong password.";
+      input.value = "";
+      input.focus();
+    }
+  }
+
+  document.getElementById("gate-submit").addEventListener("click", tryUnlock);
+  document.getElementById("gate-input").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") tryUnlock();
+  });
+
+  if (sessionStorage.getItem("cokey-bundle-unlocked") === "1") {
+    document.getElementById("gate").style.display = "none";
+    document.getElementById("app").style.display = "block";
+    boot();
+  }
+
+  /* ---------------- app state ---------------- */
+  let state = null;
+  let catalog = { providers: [] };
+  let dirty = false;
+  let activeTab = "skill";
+
+  function blank() {
+    return {
+      tiers: [],
+      skill: [],
+      rateLimit: [],
+      combined: [],
+      redundancy: [],
+      dropList: [],
+      bottomLine: "",
+      bottomLineFr: "",
+      disclaimer: "",
+      disclaimerFr: "",
+      sources: [],
+      funFacts: [],
+      funFactsFr: [],
+    };
+  }
+
+  function markDirty() {
+    dirty = true;
+    renderStatus();
+    renderIssues();
+  }
+
+  function renderStatus() {
+    const el = document.getElementById("status");
+    el.innerHTML = dirty
+      ? '<span class="dirty">Unsaved changes</span> — download or copy the JSON, then commit it in cokey-bundle.'
+      : '<span class="clean">Matches the last loaded file</span>';
+  }
+
+  async function boot() {
+    try {
+      const [rankingsRes, catalogRes] = await Promise.all([
+        fetch("content/rankings.json", { cache: "no-store" }),
+        fetch("content/catalog-snapshot.json", { cache: "no-store" }),
+      ]);
+      state = rankingsRes.ok ? await rankingsRes.json() : blank();
+      catalog = catalogRes.ok ? await catalogRes.json() : { providers: [] };
+      if (!rankingsRes.ok) {
+        document.getElementById("status").textContent =
+          "Could not fetch content/rankings.json — starting from a blank bundle. Use “Load a JSON file…” to open one instead.";
+      }
+    } catch {
+      state = blank();
+      document.getElementById("status").textContent =
+        "Fetch failed (open this page through a local server, not file://) — starting blank. Use “Load a JSON file…” instead.";
+    }
+    normalizeState();
+    populateDatalists();
+    dirty = false;
+    buildTabs();
+    renderStatus();
+    renderIssues();
+    renderActiveTab();
+  }
+
+  function normalizeState() {
+    const b = blank();
+    for (const key of Object.keys(b)) {
+      if (state[key] === undefined) state[key] = b[key];
+    }
+    delete state.source;
+    delete state.fetchedAt;
+  }
+
+  function populateDatalists() {
+    const providerIds = new Set();
+    const modelIds = new Set();
+    for (const p of catalog.providers || []) {
+      providerIds.add(p.id);
+      for (const m of p.models || []) modelIds.add(m);
+    }
+    const dlP = document.getElementById("dl-providers");
+    dlP.innerHTML = [...providerIds].sort().map((id) => `<option value="${escapeAttr(id)}">`).join("");
+    const dlM = document.getElementById("dl-models");
+    dlM.innerHTML = [...modelIds].sort().map((id) => `<option value="${escapeAttr(id)}">`).join("");
+  }
+
+  function escapeAttr(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  /* ---------------- file load / export ---------------- */
+  document.getElementById("file-input").addEventListener("change", async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      const parsed = JSON.parse(await file.text());
+      state = parsed;
+      normalizeState();
+      dirty = false;
+      renderStatus();
+      renderIssues();
+      renderActiveTab();
+    } catch (err) {
+      alert("That file isn't valid JSON: " + err.message);
+    }
+    e.target.value = "";
+  });
+
+  document.getElementById("btn-reload").addEventListener("click", () => {
+    if (dirty && !confirm("Discard unsaved changes and reload from content/rankings.json?")) return;
+    boot();
+  });
+
+  function exportObject() {
+    const order = [
+      "tiers", "skill", "rateLimit", "combined", "redundancy", "dropList",
+      "bottomLine", "bottomLineFr", "disclaimer", "disclaimerFr", "sources",
+      "funFacts", "funFactsFr",
+    ];
+    const out = {};
+    for (const key of order) out[key] = state[key];
+    return out;
+  }
+
+  document.getElementById("btn-download").addEventListener("click", () => {
+    const issues = validate();
+    if (issues.some((i) => i.level === "error")) {
+      alert("Fix the errors listed above the tabs before exporting — they'd make COKEY reject this bundle.");
+      return;
+    }
+    const blob = new Blob([JSON.stringify(exportObject(), null, 2) + "\n"], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "rankings.json";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    dirty = false;
+    renderStatus();
+  });
+
+  document.getElementById("btn-copy").addEventListener("click", async () => {
+    await navigator.clipboard.writeText(JSON.stringify(exportObject(), null, 2));
+    const btn = document.getElementById("btn-copy");
+    const original = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(() => (btn.textContent = original), 1200);
+  });
+
+  /* ---------------- validation ---------------- */
+  function validate() {
+    const issues = [];
+    const add = (level, message) => issues.push({ level, message });
+
+    if (!state.tiers.length) add("error", "At least one skill tier is required.");
+    for (const t of state.tiers) {
+      if (!["S", "A", "B", "C"].includes(t.name)) add("error", `Tier "${t.name}" must be S, A, B or C.`);
+      if (!t.label) add("error", "A tier is missing its label.");
+      if (!t.blurb) add("error", "A tier is missing its blurb.");
+    }
+    for (const s of state.skill) {
+      if (!s.model) add("error", "A skill entry is missing its model.");
+      if (!["S", "A", "B", "C"].includes(s.tierName)) add("error", `"${s.model || "?"}" has an invalid tier.`);
+      if (!s.reason) add("error", `"${s.model || "?"}" is missing its reason.`);
+    }
+    for (const r of state.rateLimit) {
+      if (!r.providerId || !r.provider) add("error", "A rate-limit row is missing its provider.");
+      if (![1, 2, 3, 4].includes(Number(r.tier))) add("error", `"${r.provider || "?"}" has an invalid volume tier.`);
+      if (!["operator", "third-party", "unpublished"].includes(r.provenance))
+        add("error", `"${r.provider || "?"}" has an invalid provenance.`);
+      if (!["solid", "watch", "avoid"].includes(r.reliability))
+        add("error", `"${r.provider || "?"}" has an invalid reliability.`);
+      if (!r.quota) add("error", `"${r.provider || "?"}" is missing its quota.`);
+    }
+    const ranks = new Set();
+    for (const c of state.combined) {
+      if (!c.providerId || !c.model) add("error", "A combined-board row is missing its provider or model.");
+      if (!c.why) add("error", `"${c.model || "?"}" is missing its "why".`);
+      if (![1, 2, 3, 4].includes(Number(c.tier))) add("error", `"${c.model || "?"}" has an invalid volume tier.`);
+      if (ranks.has(c.rank)) add("warning", `Rank ${c.rank} is used more than once on the combined board.`);
+      ranks.add(c.rank);
+    }
+    for (const r of state.redundancy) {
+      if (!r.family) add("error", "A redundancy row is missing its family name.");
+      if (!r.keep) add("error", `"${r.family || "?"}" is missing "keep".`);
+      if (!r.fallback) add("error", `"${r.family || "?"}" is missing "fallback".`);
+    }
+    for (const d of state.dropList) {
+      if (!d.provider) add("error", "A drop-list row is missing its provider.");
+      if (!d.reason) add("error", `"${d.provider || "?"}" is missing its reason.`);
+    }
+    if (!state.bottomLine) add("error", "The bottom line is empty.");
+    if (!state.disclaimer) add("error", "The disclaimer is empty.");
+    for (const s of state.sources) {
+      if (!s.label || !s.url) add("error", "A source is missing its label or URL.");
+      else if (!/^https?:\/\//.test(s.url)) add("warning", `Source "${s.label}" doesn't look like a URL.`);
+    }
+    if (state.funFactsFr.length && state.funFactsFr.length !== state.funFacts.length) {
+      add("warning", "funFacts and funFactsFr have different lengths — some fun facts will fall back to English.");
+    }
+    for (const providerId of collectProviderIds()) {
+      if (catalog.providers.length && !catalog.providers.some((p) => p.id === providerId)) {
+        add("warning", `"${providerId}" isn't in the last catalog snapshot — check it's still a real provider id.`);
+      }
+    }
+    return issues;
+  }
+
+  function collectProviderIds() {
+    const ids = new Set();
+    for (const s of state.skill) if (s.providerId) ids.add(s.providerId);
+    for (const r of state.rateLimit) if (r.providerId) ids.add(r.providerId);
+    for (const c of state.combined) if (c.providerId) ids.add(c.providerId);
+    for (const r of state.redundancy) {
+      if (r.keep) ids.add(r.keep);
+      if (r.fallback) ids.add(r.fallback);
+      for (const a of r.alsoOn || []) ids.add(a);
+    }
+    return ids;
+  }
+
+  function renderIssues() {
+    const el = document.getElementById("issues");
+    const issues = validate();
+    const errors = issues.filter((i) => i.level === "error");
+    const warnings = issues.filter((i) => i.level === "warning");
+    if (!errors.length && !warnings.length) {
+      el.className = "ok";
+      el.textContent = "No issues found. Ready to download.";
+      return;
+    }
+    el.className = errors.length ? "err" : "warn";
+    el.innerHTML =
+      (errors.length ? `<strong>${errors.length} error(s) — must fix before exporting.</strong>` : "") +
+      (warnings.length ? `<strong>${warnings.length} warning(s).</strong>` : "") +
+      "<ul>" +
+      [...errors, ...warnings].slice(0, 12).map((i) => `<li>${escapeHtml(i.message)}</li>`).join("") +
+      "</ul>";
+  }
+
+  /* ---------------- tabs ---------------- */
+  const TABS = [
+    { id: "skill", label: "Skill board" },
+    { id: "rateLimit", label: "Rate limits" },
+    { id: "combined", label: "Combined" },
+    { id: "redundancy", label: "Redundancy" },
+    { id: "dropList", label: "Drop list" },
+    { id: "funFacts", label: "Fun facts" },
+    { id: "meta", label: "Meta" },
+  ];
+
+  function buildTabs() {
+    const nav = document.getElementById("tabs");
+    nav.innerHTML = "";
+    for (const tab of TABS) {
+      const btn = document.createElement("button");
+      btn.textContent = tab.label;
+      btn.dataset.tab = tab.id;
+      btn.className = tab.id === activeTab ? "active" : "";
+      btn.addEventListener("click", () => {
+        activeTab = tab.id;
+        [...nav.children].forEach((c) => c.classList.toggle("active", c.dataset.tab === activeTab));
+        renderActiveTab();
+      });
+      nav.appendChild(btn);
+    }
+  }
+
+  function renderActiveTab() {
+    const panels = document.getElementById("panels");
+    panels.innerHTML = "";
+    const panel = document.createElement("div");
+    panel.className = "tab-panel active";
+    panels.appendChild(panel);
+
+    if (activeTab === "skill") renderList(panel, state.skill, SKILL_FIELDS, "skill entry");
+    else if (activeTab === "rateLimit") renderList(panel, state.rateLimit, RATE_FIELDS, "rate-limit row");
+    else if (activeTab === "combined") renderList(panel, state.combined, COMBINED_FIELDS, "combined-board row");
+    else if (activeTab === "redundancy") renderList(panel, state.redundancy, REDUNDANCY_FIELDS, "redundancy row");
+    else if (activeTab === "dropList") renderList(panel, state.dropList, DROP_FIELDS, "drop-list entry");
+    else if (activeTab === "funFacts") renderFunFacts(panel);
+    else if (activeTab === "meta") renderMeta(panel);
+  }
+
+  /* ---------------- field configs ---------------- */
+  const SKILL_FIELDS = [
+    { key: "model", label: "Model", type: "text", datalist: "dl-models" },
+    { key: "providerId", label: "Provider id", type: "text", datalist: "dl-providers" },
+    { key: "tierName", label: "Tier", type: "select", options: ["S", "A", "B", "C"] },
+    { key: "sweScore", label: "SWE score (optional)", type: "number" },
+    { key: "reason", label: "Reason (EN)", type: "textarea", span2: true },
+    { key: "reasonFr", label: "Reason (FR)", type: "textarea", span2: true },
+  ];
+  const RATE_FIELDS = [
+    { key: "providerId", label: "Provider id", type: "text", datalist: "dl-providers" },
+    { key: "provider", label: "Provider name", type: "text" },
+    { key: "tier", label: "Volume tier (1 = highest)", type: "select", options: [1, 2, 3, 4], numeric: true },
+    { key: "quota", label: "Quota", type: "text" },
+    { key: "provenance", label: "Provenance", type: "select", options: ["operator", "third-party", "unpublished"] },
+    { key: "reliability", label: "Reliability", type: "select", options: ["solid", "watch", "avoid"] },
+    { key: "note", label: "Note (EN)", type: "textarea", span2: true },
+    { key: "noteFr", label: "Note (FR)", type: "textarea", span2: true },
+  ];
+  const COMBINED_FIELDS = [
+    { key: "rank", label: "Rank", type: "number" },
+    { key: "providerId", label: "Provider id", type: "text", datalist: "dl-providers" },
+    { key: "model", label: "Model", type: "text", datalist: "dl-models" },
+    { key: "tier", label: "Volume tier (1 = highest)", type: "select", options: [1, 2, 3, 4], numeric: true },
+    { key: "why", label: "Why (EN)", type: "textarea", span2: true },
+    { key: "whyFr", label: "Why (FR)", type: "textarea", span2: true },
+  ];
+  const REDUNDANCY_FIELDS = [
+    { key: "family", label: "Model family", type: "text", span2: true },
+    { key: "alsoOn", label: "Also on (comma-separated provider ids)", type: "list", span2: true },
+    { key: "keep", label: "Keep (provider id)", type: "text", datalist: "dl-providers" },
+    { key: "fallback", label: "Fallback (provider id)", type: "text", datalist: "dl-providers" },
+  ];
+  const DROP_FIELDS = [
+    { key: "provider", label: "Provider", type: "text" },
+    { key: "reason", label: "Reason (EN)", type: "textarea", span2: true },
+    { key: "reasonFr", label: "Reason (FR)", type: "textarea", span2: true },
+  ];
+  const SOURCE_FIELDS = [
+    { key: "label", label: "Label", type: "text" },
+    { key: "url", label: "URL", type: "text" },
+  ];
+  const TIER_FIELDS = [
+    { key: "name", label: "Tier letter", type: "select", options: ["S", "A", "B", "C"] },
+    { key: "label", label: "Label (EN)", type: "text" },
+    { key: "labelFr", label: "Label (FR)", type: "text" },
+    { key: "blurb", label: "Blurb (EN)", type: "textarea", span2: true },
+    { key: "blurbFr", label: "Blurb (FR)", type: "textarea", span2: true },
+  ];
+
+  function blankFor(fields) {
+    const obj = {};
+    for (const f of fields) obj[f.key] = f.type === "list" ? [] : f.type === "number" ? undefined : "";
+    return obj;
+  }
+
+  function moveItem(list, i, dir) {
+    const j = i + dir;
+    if (j < 0 || j >= list.length) return;
+    [list[i], list[j]] = [list[j], list[i]];
+  }
+
+  function iconBtn(label, onClick, disabled, danger) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = label;
+    b.title = label;
+    if (danger) b.classList.add("danger");
+    b.disabled = !!disabled;
+    b.addEventListener("click", onClick);
+    return b;
+  }
+
+  function renderField(item, f) {
+    const wrap = document.createElement("div");
+    wrap.className = "field" + (f.span2 ? " span2" : "");
+    const label = document.createElement("label");
+    label.textContent = f.label;
+    wrap.appendChild(label);
+
+    let input;
+    if (f.type === "select") {
+      input = document.createElement("select");
+      for (const opt of f.options) {
+        const o = document.createElement("option");
+        o.value = String(opt);
+        o.textContent = String(opt);
+        input.appendChild(o);
+      }
+      input.value = item[f.key] !== undefined && item[f.key] !== null ? String(item[f.key]) : "";
+      input.addEventListener("change", () => {
+        item[f.key] = f.numeric ? Number(input.value) : input.value;
+        markDirty();
+      });
+    } else if (f.type === "textarea") {
+      input = document.createElement("textarea");
+      input.value = item[f.key] || "";
+      input.addEventListener("input", () => {
+        item[f.key] = input.value;
+        markDirty();
+      });
+    } else if (f.type === "number") {
+      input = document.createElement("input");
+      input.type = "number";
+      input.step = "0.1";
+      input.value = item[f.key] === undefined || item[f.key] === null ? "" : item[f.key];
+      input.addEventListener("input", () => {
+        item[f.key] = input.value === "" ? undefined : Number(input.value);
+        markDirty();
+      });
+    } else if (f.type === "list") {
+      input = document.createElement("input");
+      input.type = "text";
+      input.value = (item[f.key] || []).join(", ");
+      input.addEventListener("input", () => {
+        item[f.key] = input.value.split(",").map((s) => s.trim()).filter(Boolean);
+        markDirty();
+      });
+    } else {
+      input = document.createElement("input");
+      input.type = "text";
+      input.value = item[f.key] || "";
+      if (f.datalist) input.setAttribute("list", f.datalist);
+      input.addEventListener("input", () => {
+        item[f.key] = input.value;
+        markDirty();
+      });
+    }
+    wrap.appendChild(input);
+    return wrap;
+  }
+
+  function renderList(container, list, fields, noun) {
+    list.forEach((item, i) => {
+      const card = document.createElement("div");
+      card.className = "entry-card";
+
+      const head = document.createElement("div");
+      head.className = "entry-head";
+      const idx = document.createElement("span");
+      idx.className = "entry-index";
+      idx.textContent = `${noun} #${i + 1}`;
+      head.appendChild(idx);
+
+      const controls = document.createElement("div");
+      controls.className = "entry-controls";
+      controls.appendChild(iconBtn("↑", () => { moveItem(list, i, -1); markDirty(); renderActiveTab(); }, i === 0));
+      controls.appendChild(iconBtn("↓", () => { moveItem(list, i, 1); markDirty(); renderActiveTab(); }, i === list.length - 1));
+      controls.appendChild(iconBtn("✕", () => { list.splice(i, 1); markDirty(); renderActiveTab(); }, false, true));
+      head.appendChild(controls);
+      card.appendChild(head);
+
+      const grid = document.createElement("div");
+      grid.className = "field-grid";
+      for (const f of fields) grid.appendChild(renderField(item, f));
+      card.appendChild(grid);
+
+      container.appendChild(card);
+    });
+
+    const addBtn = document.createElement("button");
+    addBtn.type = "button";
+    addBtn.className = "add-btn";
+    addBtn.textContent = `+ Add ${noun}`;
+    addBtn.addEventListener("click", () => {
+      list.push(blankFor(fields));
+      markDirty();
+      renderActiveTab();
+    });
+    container.appendChild(addBtn);
+  }
+
+  function renderFunFacts(container) {
+    const hint = document.createElement("p");
+    hint.className = "hint";
+    hint.textContent = "One card per fact on the dashboard's Insights corner. Keep them short. The French field is optional — it falls back to English when empty.";
+    container.appendChild(hint);
+
+    const max = Math.max(state.funFacts.length, state.funFactsFr.length);
+    for (let i = 0; i < max; i++) {
+      const row = document.createElement("div");
+      row.className = "fact-row";
+
+      const en = document.createElement("textarea");
+      en.value = state.funFacts[i] || "";
+      en.placeholder = "English";
+      en.addEventListener("input", () => { state.funFacts[i] = en.value; markDirty(); });
+
+      const fr = document.createElement("textarea");
+      fr.value = state.funFactsFr[i] || "";
+      fr.placeholder = "Français (optional)";
+      fr.addEventListener("input", () => { state.funFactsFr[i] = fr.value; markDirty(); });
+
+      row.appendChild(en);
+      row.appendChild(fr);
+      row.appendChild(iconBtn("✕", () => {
+        state.funFacts.splice(i, 1);
+        state.funFactsFr.splice(i, 1);
+        markDirty();
+        renderActiveTab();
+      }, false, true));
+      container.appendChild(row);
+    }
+
+    const addBtn = document.createElement("button");
+    addBtn.type = "button";
+    addBtn.className = "add-btn";
+    addBtn.textContent = "+ Add fun fact";
+    addBtn.addEventListener("click", () => {
+      state.funFacts.push("");
+      state.funFactsFr.push("");
+      markDirty();
+      renderActiveTab();
+    });
+    container.appendChild(addBtn);
+  }
+
+  function renderMeta(container) {
+    const block = document.createElement("div");
+    block.className = "meta-block";
+    block.innerHTML = "<h3>Bottom line</h3>";
+    const pair1 = document.createElement("div");
+    pair1.className = "lang-pair";
+    pair1.appendChild(renderField(state, { key: "bottomLine", label: "English", type: "textarea" }));
+    pair1.appendChild(renderField(state, { key: "bottomLineFr", label: "Français", type: "textarea" }));
+    block.appendChild(pair1);
+    container.appendChild(block);
+
+    const block2 = document.createElement("div");
+    block2.className = "meta-block";
+    block2.innerHTML = "<h3>Disclaimer</h3>";
+    const pair2 = document.createElement("div");
+    pair2.className = "lang-pair";
+    pair2.appendChild(renderField(state, { key: "disclaimer", label: "English", type: "textarea" }));
+    pair2.appendChild(renderField(state, { key: "disclaimerFr", label: "Français", type: "textarea" }));
+    block2.appendChild(pair2);
+    container.appendChild(block2);
+
+    const block3 = document.createElement("div");
+    block3.className = "meta-block";
+    block3.innerHTML = "<h3>Sources</h3>";
+    container.appendChild(block3);
+    renderList(block3, state.sources, SOURCE_FIELDS, "source");
+
+    const block4 = document.createElement("div");
+    block4.className = "meta-block";
+    block4.innerHTML = "<h3>Skill tiers</h3><p class=\"hint\">The S/A/B/C legend shown above the skill board.</p>";
+    container.appendChild(block4);
+    renderList(block4, state.tiers, TIER_FIELDS, "tier");
+  }
+})();
+</script>
+</body>
+</html>
